@@ -1,5 +1,8 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
+
+import android.support.v7.app.ActionBar;
+
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
@@ -21,6 +24,7 @@ public class MainVM {
     }
 
     public void initializeLayouts(){
-
+        ActionBar actionBar = mMainActivity.getSupportActionBar();
+        actionBar.setSubtitle("Home");
     }
 }
