@@ -1,9 +1,9 @@
-package com.loopcupcakes.apps.pollster;
+package com.loopcupcakes.apps.polls;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.loopcupcakes.apps.pollster.viewmodel.MainVM;
+import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 
 public class MainActivity extends AppCompatActivity {
 

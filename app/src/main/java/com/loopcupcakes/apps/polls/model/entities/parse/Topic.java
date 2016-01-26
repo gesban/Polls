@@ -1,4 +1,4 @@
-package com.loopcupcakes.apps.pollster.model.entities.parse;
+package com.loopcupcakes.apps.polls.model.entities.parse;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;

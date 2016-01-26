@@ -1,4 +1,4 @@
-package com.loopcupcakes.apps.pollster;
+package com.loopcupcakes.apps.polls;
 
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
-package com.loopcupcakes.apps.pollster.viewmodel;
+package com.loopcupcakes.apps.polls.viewmodel;
 
-import com.loopcupcakes.apps.pollster.MainActivity;
-import com.loopcupcakes.apps.pollster.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.MainActivity;
+import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 /**
  * Created by evin on 1/26/16.

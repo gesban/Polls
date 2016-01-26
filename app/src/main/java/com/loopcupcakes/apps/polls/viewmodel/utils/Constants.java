@@ -1,4 +1,4 @@
-package com.loopcupcakes.apps.pollster.viewmodel.utils;
+package com.loopcupcakes.apps.polls.viewmodel.utils;
 
 /**
  * Created by evin on 1/26/16.

@@ -1,9 +1,9 @@
-package com.loopcupcakes.apps.pollster.viewmodel;
+package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.loopcupcakes.apps.pollster.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
