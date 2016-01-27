@@ -3,8 +3,6 @@ package com.loopcupcakes.apps.polls.viewmodel;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -56,14 +54,14 @@ public class DetailsVM {
     }
 
     private void configureActionBar() {
-//        Toolbar toolbar = (Toolbar) mDetailsActivity.findViewById(R.id.a_details_toolbar);
-//
-//        mDetailsActivity.setSupportActionBar(toolbar);
+        String title = mDetailsActivity.getString(R.string.app_name) + " | " + mDetailsActivity.getString(R.string.a_details_title);
         mActionBar = mDetailsActivity.getSupportActionBar();
+
 
         if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setTitle(title);
             mActionBar.setSubtitle("");
         }
 

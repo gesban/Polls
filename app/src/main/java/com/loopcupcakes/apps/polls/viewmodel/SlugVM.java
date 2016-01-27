@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
@@ -56,15 +54,15 @@ public class SlugVM {
     }
 
     private void configureActionBar() {
-//        Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
+        String title = mSlugActivity.getString(R.string.app_name) + " | " + mSlugActivity.getString(R.string.a_slug_title);
         Intent intent = mSlugActivity.getIntent();
 
-//        mSlugActivity.setSupportActionBar(toolbar);
         mActionBar = mSlugActivity.getSupportActionBar();
 
         if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setTitle(title);
             mActionBar.setSubtitle("");
         }
 

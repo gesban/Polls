@@ -9,7 +9,6 @@ import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.List;
 
 import retrofit2.Call;

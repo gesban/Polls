@@ -9,7 +9,14 @@
     <string name="f_loading_loading_text">Loading polls&#8230;</string>
 
     <string name="f_home_available_text">Polls available</string>
-    <string name="recycler_home_decoration">10</string>
+
+
     <string name="main_vm_error_internet">Can\'t download the main topics. Please check your Internet Connection</string>
-    <string name="title_activity_slug">SlugActivity</string>
+
+
+    <string name="a_details_title">Charts</string>
+    <string name="a_slug_title">Topics</string>
+
+    <string name="recycler_home_decoration">10</string>
+
 </resources>
