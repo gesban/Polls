@@ -1,8 +1,10 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
@@ -27,6 +29,30 @@ public class DetailsVM {
 
     public void initializeLayout() {
         configureActionBar();
+        configureTabBar();
+    }
+
+    private void configureTabBar() {
+        TabLayout tabLayout = (TabLayout) mDetailsActivity.findViewById(R.id.a_main_tab);
+        tabLayout.addTab(tabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_current_tab)));
+        tabLayout.addTab(tabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_historical_tab)));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.d(TAG, "Selected: " + tab.getText());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                Log.d(TAG, "UnSelected: " + tab.getTag());
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void configureActionBar() {
