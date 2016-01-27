@@ -8,7 +8,10 @@ import android.view.MenuItem;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 
 public class MainActivity extends AppCompatActivity {
-    // TODO: 1/26/16 handle savedInstance
+    // TODO: 1/26/16 Handle savedInstance
+    // TODO: 1/27/16 Handle scrollable toolbar http://android-developers.blogspot.com/2015/05/android-design-support-library.html
+    // TODO: 1/27/16 Implement NestedScrollView http://developer.android.com/reference/android/support/design/widget/AppBarLayout.html
+
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
 

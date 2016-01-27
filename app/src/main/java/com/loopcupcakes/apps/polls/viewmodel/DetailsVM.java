@@ -3,8 +3,6 @@ package com.loopcupcakes.apps.polls.viewmodel;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
@@ -29,28 +27,6 @@ public class DetailsVM {
 
     public void initializeLayout() {
         configureActionBar();
-//        configureListView();
-    }
-
-    private void configureListView() {
-        if (mIntent.hasExtra(Constants.ChartItemKey)){
-            mChart = mIntent.getParcelableExtra(Constants.ChartItemKey);
-        }
-
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
-
-        ListView listView = (ListView) mDetailsActivity.findViewById(R.id.a_details_listview);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mDetailsActivity,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
-        listView.setAdapter(adapter);
     }
 
     private void configureActionBar() {
