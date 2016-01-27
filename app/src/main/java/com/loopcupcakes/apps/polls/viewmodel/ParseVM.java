@@ -3,6 +3,7 @@ package com.loopcupcakes.apps.polls.viewmodel;
 import android.content.Context;
 import android.util.Log;
 
+import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
@@ -23,6 +24,9 @@ public class ParseVM {
         if (mContext != null){
             try {
                 Parse.enableLocalDatastore(mContext);
+
+                registerSubclasses();
+
                 Parse.initialize(mContext);
                 ParseInstallation.getCurrentInstallation().saveInBackground();
             } catch (Exception e) {
@@ -30,6 +34,10 @@ public class ParseVM {
             }
             sendTestObject();
         }
+    }
+
+    private void registerSubclasses() {
+        ParseObject.registerSubclass(Topic.class);
     }
 
     private void sendTestObject() {
