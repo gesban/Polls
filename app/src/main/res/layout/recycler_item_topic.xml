@@ -9,17 +9,17 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/recycler_item_description_txt"
+            android:id="@+id/recycler_topic_description_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/recycler_item_delimiter_txt"
+            android:id="@+id/recycler_topic_delimiter_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/recycler_item_year_txt"
+            android:id="@+id/recycler_topic_year_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

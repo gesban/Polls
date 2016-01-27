@@ -34,9 +34,9 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textViewDescription = (TextView) itemView.findViewById(R.id.recycler_item_description_txt);
-            textViewDelimiter = (TextView) itemView.findViewById(R.id.recycler_item_delimiter_txt);
-            textViewYear = (TextView) itemView.findViewById(R.id.recycler_item_year_txt);
+            textViewDescription = (TextView) itemView.findViewById(R.id.recycler_topic_description_txt);
+            textViewDelimiter = (TextView) itemView.findViewById(R.id.recycler_topic_delimiter_txt);
+            textViewYear = (TextView) itemView.findViewById(R.id.recycler_topic_year_txt);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
