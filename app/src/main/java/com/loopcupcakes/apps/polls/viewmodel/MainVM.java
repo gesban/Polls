@@ -18,6 +18,12 @@ import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.view.LoadingFragment;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 /**
  * Created by evin on 1/26/16.
@@ -50,6 +56,7 @@ public class MainVM {
 
         configureActionBar();
         loadFragment(Constants.FRAGMENT_TYPE.LOADING);
+        retrieveTopics();
     }
 
     private void loadFragment(Constants.FRAGMENT_TYPE fragment_type) {
@@ -110,6 +117,24 @@ public class MainVM {
                 mMainActivity.invalidateOptionsMenu();
             }
         };
+    }
+
+    private void retrieveTopics(){
+        // TODO: 1/26/16 Update loading TextView if no connection
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
+        query.orderByAscending("priority");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null){
+                    for(ParseObject object : objects){
+                        Log.d(TAG_, object.get("name").toString());
+                    }
+                }else {
+                    Log.d(TAG_, e.getMessage());
+                }
+            }
+        });
     }
 
 }
