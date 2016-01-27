@@ -13,5 +13,8 @@ import retrofit2.http.Query;
  */
 public interface Pollster {
     @GET("/pollster/api/charts")
-    Call<List<Chart>> contributors(@Query("topic") String topic);
+    Call<List<Chart>> slugs(@Query("topic") String topic);
+
+//    @GET("/pollster/api/charts/{slug}")
+//    Call<Chart>
 }

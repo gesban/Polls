@@ -43,7 +43,7 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
 
         Pollster pollster = retrofit.create(Pollster.class);
 
-        Call<List<Chart>> call = pollster.contributors(params[0]);
+        Call<List<Chart>> call = pollster.slugs(params[0]);
 
         List<Chart> charts = null;
 
