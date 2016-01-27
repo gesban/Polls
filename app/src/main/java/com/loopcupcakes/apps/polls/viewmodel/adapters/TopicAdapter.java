@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
+import com.loopcupcakes.apps.polls.viewmodel.tasks.SlugAsyncTask;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         public TextView textViewDescription;
         public TextView textViewDelimiter;
         public TextView textViewYear;
+        public String slug;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -31,6 +33,13 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             textViewDescription = (TextView) itemView.findViewById(R.id.recycler_item_description_txt);
             textViewDelimiter = (TextView) itemView.findViewById(R.id.recycler_item_delimiter_txt);
             textViewYear = (TextView) itemView.findViewById(R.id.recycler_item_year_txt);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new SlugAsyncTask().execute(slug);
+                }
+            });
         }
     }
 
@@ -56,10 +65,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         TextView textViewDescription = holder.textViewDescription;
         TextView textViewDelimiter = holder.textViewDelimiter;
         TextView textViewYear = holder.textViewYear;
-        
+
         textViewDescription.setText(topic.getDescription());
         textViewDelimiter.setText(topic.getDelimiter());
         textViewYear.setText(String.valueOf(topic.getYear()));
+
+        holder.slug = topic.getName();
     }
 
     @Override
