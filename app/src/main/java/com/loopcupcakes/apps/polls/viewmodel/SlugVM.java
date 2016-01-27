@@ -1,5 +1,6 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,6 +57,7 @@ public class SlugVM {
 
     private void configureActionBar() {
         Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
+        Intent intent = mSlugActivity.getIntent();
 
         mSlugActivity.setSupportActionBar(toolbar);
         mActionBar = mSlugActivity.getSupportActionBar();
@@ -63,7 +65,11 @@ public class SlugVM {
         if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mActionBar.setHomeButtonEnabled(true);
-            mActionBar.setSubtitle(R.string.subtitle_home);
+            mActionBar.setSubtitle("");
         }
+
+        if (intent.hasExtra(Constants.SlugKey)){
+            mActionBar.setSubtitle(intent.getStringExtra(Constants.SlugKey));
+        }   
     }
 }

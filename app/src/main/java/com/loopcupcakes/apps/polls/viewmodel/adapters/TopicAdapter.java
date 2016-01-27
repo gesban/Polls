@@ -29,6 +29,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         public TextView textViewDelimiter;
         public TextView textViewYear;
         public String slug;
+        public String subtitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -41,7 +42,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), SlugActivity.class);
-                    intent.putExtra(Constants.SlugKey, slug);
+                    intent.putExtra(Constants.SlugKey, subtitle);
                     v.getContext().startActivity(intent);
                     new SlugAsyncTask().execute(slug);
                 }
@@ -76,6 +77,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         textViewYear.setText(String.valueOf(topic.getYear()));
 
         holder.slug = topic.getName();
+        holder.subtitle = topic.getYear() + " " + topic.getDescription() + " " + topic.getDelimiter();
     }
 
     @Override
