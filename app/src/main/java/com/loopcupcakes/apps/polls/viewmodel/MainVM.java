@@ -167,6 +167,7 @@ public class MainVM {
 
     private void updateTopics(List<ParseObject> objects) {
         for (ParseObject object : objects) {
+            object.pinInBackground();
             mTopics.add((Topic) object);
         }
         HomeFragment.mTopicAdapter.notifyDataSetChanged();
