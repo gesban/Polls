@@ -65,6 +65,7 @@ public class MainVM {
     }
 
     private NavigationView.OnNavigationItemSelectedListener getNavigationListener() {
+        // TODO: 1/26/16 Add menu items
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
