@@ -6,4 +6,6 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="f_loading_progressbar_margin">20dp</dimen>
+    <dimen name="f_home_available_margin">10dp</dimen>
+    <dimen name="f_home_frame_padding">10dp</dimen>
 </resources>
