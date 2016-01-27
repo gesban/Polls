@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
+import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,8 +41,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.f_home_recycler);
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(getString(R.string.recycler_home_decoration)));
 
         recyclerView.setAdapter(mTopicAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(spacesItemDecoration);
     }
 }
