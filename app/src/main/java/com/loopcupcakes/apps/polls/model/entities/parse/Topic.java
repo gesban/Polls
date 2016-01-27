@@ -9,7 +9,7 @@ import com.parse.ParseObject;
 @ParseClassName("Topic")
 public class Topic extends ParseObject{
 
-    Topic(){
+    public Topic(){
 
     }
 

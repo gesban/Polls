@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,6 +17,8 @@ import android.widget.FrameLayout;
 
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
+import com.loopcupcakes.apps.polls.view.HomeFragment;
 import com.loopcupcakes.apps.polls.view.LoadingFragment;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.parse.FindCallback;
@@ -23,6 +26,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +34,7 @@ import java.util.List;
  */
 public class MainVM {
     private static final String TAG_ = Constants.MainVMTag_;
+    public static ArrayList<Topic> mTopics;
 
     private MainActivity mMainActivity;
     private ParseVM mParseVM;
@@ -42,6 +47,8 @@ public class MainVM {
     public MainVM(MainActivity mainActivity){
         mMainActivity = mainActivity;
         mParseVM = new ParseVM(mMainActivity);
+
+        mTopics = new ArrayList<>();
     }
 
     public void initializeThirdPartyLibraries(){
@@ -62,6 +69,9 @@ public class MainVM {
     private void loadFragment(Constants.FRAGMENT_TYPE fragment_type) {
         Fragment fragment;
         switch (fragment_type){
+            case HOME:
+                fragment = new HomeFragment();
+                break;
             default:
                 fragment = new LoadingFragment();
         }
@@ -121,20 +131,27 @@ public class MainVM {
 
     private void retrieveTopics(){
         // TODO: 1/26/16 Update loading TextView if no connection
+        // TODO: 1/26/16 Query local datastore first
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null){
-                    for(ParseObject object : objects){
-                        Log.d(TAG_, object.get("name").toString());
-                    }
+                    updateTopics(objects);
+                    loadFragment(Constants.FRAGMENT_TYPE.HOME);
                 }else {
                     Log.d(TAG_, e.getMessage());
                 }
             }
         });
+    }
+
+    private void updateTopics(List<ParseObject> objects) {
+        for (ParseObject object : objects){
+            mTopics.add((Topic) object);
+        }
+        HomeFragment.mTopicAdapter.notifyDataSetChanged();
     }
 
 }
