@@ -56,10 +56,10 @@ public class SlugVM {
     }
 
     private void configureActionBar() {
-        Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
+//        Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
         Intent intent = mSlugActivity.getIntent();
 
-        mSlugActivity.setSupportActionBar(toolbar);
+//        mSlugActivity.setSupportActionBar(toolbar);
         mActionBar = mSlugActivity.getSupportActionBar();
 
         if (mActionBar != null) {

@@ -23,12 +23,14 @@
         <activity
             android:name=".SlugActivity"
             android:launchMode="singleTop"
+            android:theme="@style/AppTheme.ActionBar"
             android:parentActivityName=".MainActivity">
 
         </activity>
         <activity
             android:name=".DetailsActivity"
             android:launchMode="singleTop"
+            android:theme="@style/AppTheme.ActionBar"
             android:parentActivityName=".SlugActivity">
 
         </activity>

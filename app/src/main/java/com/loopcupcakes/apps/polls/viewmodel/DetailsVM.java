@@ -31,7 +31,7 @@ public class DetailsVM {
 
     public void initializeLayout() {
         configureActionBar();
-        configureListView();
+//        configureListView();
     }
 
     private void configureListView() {
@@ -56,9 +56,9 @@ public class DetailsVM {
     }
 
     private void configureActionBar() {
-        Toolbar toolbar = (Toolbar) mDetailsActivity.findViewById(R.id.a_details_toolbar);
-
-        mDetailsActivity.setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) mDetailsActivity.findViewById(R.id.a_details_toolbar);
+//
+//        mDetailsActivity.setSupportActionBar(toolbar);
         mActionBar = mDetailsActivity.getSupportActionBar();
 
         if (mActionBar != null) {
