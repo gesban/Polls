@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Polls</string>
+
+    <string name="drawer_open">Opening</string>
+    <string name="drawer_close">Closing</string>
+
+    <string name="subtitle_home">Home</string>
 </resources>
