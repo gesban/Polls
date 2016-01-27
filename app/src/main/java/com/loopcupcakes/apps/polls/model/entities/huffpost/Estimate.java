@@ -206,4 +206,12 @@ public class Estimate implements Parcelable {
             return new Estimate[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Estimate{" +
+                "choice='" + choice + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

@@ -31,7 +31,7 @@ import java.util.List;
  * Created by evin on 1/26/16.
  */
 public class MainVM {
-    private static final String TAG_ = Constants.MainVMTag_;
+    private static final String TAG_ = Constants.MainVMTAG_;
     public static ArrayList<Topic> mTopics;
 
     private MainActivity mMainActivity;

@@ -4,21 +4,25 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 /**
  * Created by evin on 1/27/16.
  */
 public class DetailsVM {
+    private static final String TAG = Constants.DetailsVMTAG_;
     DetailsActivity mDetailsActivity;
     ActionBar mActionBar;
     RecyclerView mRecyclerView;
     Intent mIntent;
+    Chart mChart;
 
     public DetailsVM(DetailsActivity detailsActivity){
         mDetailsActivity = detailsActivity;
@@ -31,6 +35,10 @@ public class DetailsVM {
     }
 
     private void configureListView() {
+        if (mIntent.hasExtra(Constants.ChartItemKey)){
+            mChart = mIntent.getParcelableExtra(Constants.ChartItemKey);
+        }
+
         String[] values = new String[] { "Android List View",
                 "Adapter implementation",
                 "Simple List View In Android",

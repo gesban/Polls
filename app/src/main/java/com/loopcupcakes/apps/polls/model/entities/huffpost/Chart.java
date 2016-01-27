@@ -316,4 +316,12 @@ public class Chart implements Parcelable {
             return new Chart[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Chart{" +
+                "title='" + title + '\'' +
+                ", estimates=" + estimates +
+                '}';
+    }
 }
