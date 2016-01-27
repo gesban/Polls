@@ -2,6 +2,8 @@ package com.loopcupcakes.apps.polls.viewmodel;
 
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -10,9 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.view.LoadingFragment;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 /**
@@ -27,6 +31,7 @@ public class MainVM {
     private ActionBar mActionBar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private FrameLayout mMainFrameLayout;
 
     public MainVM(MainActivity mainActivity){
         mMainActivity = mainActivity;
@@ -41,8 +46,19 @@ public class MainVM {
 
         mDrawerLayout = (DrawerLayout) mMainActivity.findViewById(R.id.a_main_drawer);
         mNavigationView = (NavigationView) mMainActivity.findViewById(R.id.a_main_nav);
+        mMainFrameLayout = (FrameLayout) mMainActivity.findViewById(R.id.a_main_frame);
 
         configureActionBar();
+        loadFragment(Constants.FRAGMENT_TYPE.LOADING);
+    }
+
+    private void loadFragment(Constants.FRAGMENT_TYPE fragment_type) {
+        Fragment fragment;
+        switch (fragment_type){
+            default:
+                fragment = new LoadingFragment();
+        }
+        mMainActivity.getSupportFragmentManager().beginTransaction().replace(mMainFrameLayout.getId(), fragment).commit();
     }
 
     private void configureActionBar() {

@@ -5,4 +5,5 @@
     <string name="drawer_close">Closing</string>
 
     <string name="subtitle_home">Home</string>
+    <string name="f_loading_loading_text">Loading polls&#8230;</string>
 </resources>

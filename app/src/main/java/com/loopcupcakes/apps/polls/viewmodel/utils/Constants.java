@@ -6,4 +6,8 @@ package com.loopcupcakes.apps.polls.viewmodel.utils;
 public class Constants {
     public static final String MainVMTag_ = "MainVMTAG_";
     public static final String ParseVMTAG_ = "ParseVMTAG_";
+
+    public enum FRAGMENT_TYPE{
+        LOADING, HOME
+    }
 }
