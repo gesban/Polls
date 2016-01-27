@@ -2,6 +2,7 @@ package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.util.Log;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.viewmodel.adapters.ViewPagerAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 /**
@@ -18,6 +20,9 @@ public class DetailsVM {
     private static final String TAG = Constants.DetailsVMTAG_;
     DetailsActivity mDetailsActivity;
     ActionBar mActionBar;
+    ViewPager mViewPager;
+    ViewPagerAdapter mViewPagerAdapter;
+    TabLayout mTabLayout;
     RecyclerView mRecyclerView;
     Intent mIntent;
     Chart mChart;
@@ -30,14 +35,22 @@ public class DetailsVM {
     public void initializeLayout() {
         configureActionBar();
         configureTabBar();
+        configurePager();
+    }
+
+    private void configurePager() {
+        mViewPager = (ViewPager) mDetailsActivity.findViewById(R.id.a_details_pager);
+        mViewPagerAdapter = new ViewPagerAdapter(mDetailsActivity.getSupportFragmentManager(), mTabLayout.getTabCount());
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
     }
 
     private void configureTabBar() {
-        TabLayout tabLayout = (TabLayout) mDetailsActivity.findViewById(R.id.a_main_tab);
-        tabLayout.addTab(tabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_current_tab)));
-        tabLayout.addTab(tabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_historical_tab)));
+        mTabLayout = (TabLayout) mDetailsActivity.findViewById(R.id.a_details_tab);
+        mTabLayout.addTab(mTabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_current_tab)));
+        mTabLayout.addTab(mTabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_historical_tab)));
 
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.d(TAG, "Selected: " + tab.getText());

@@ -1,4 +1,4 @@
-package com.loopcupcakes.apps.polls.view;
+package com.loopcupcakes.apps.polls.view.fragments;
 
 
 import android.os.Bundle;
