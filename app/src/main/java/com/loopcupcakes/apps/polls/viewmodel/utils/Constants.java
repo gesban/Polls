@@ -9,7 +9,9 @@ public class Constants {
     public static final String SlugVMTAG_ = "SlugVMTAG_";
     public static final String SlugAsyncTaskTAG_ = "SlugAsyncTaskTag_";
 
-    public static String SlugKey = "slug_key_intent";
+    public static final String SlugKey = "slug_key_intent";
+    public static final String ChartTitleKey = "chart_title_key_intent";
+    public static final String ChartItemKey = "char_item_key_intent";
 
     public static final String BASE_POLLSTER_URL = "http://elections.huffingtonpost.com";
 

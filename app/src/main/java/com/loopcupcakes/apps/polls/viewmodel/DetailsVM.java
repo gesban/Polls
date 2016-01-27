@@ -1,0 +1,66 @@
+package com.loopcupcakes.apps.polls.viewmodel;
+
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.loopcupcakes.apps.polls.DetailsActivity;
+import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+
+/**
+ * Created by evin on 1/27/16.
+ */
+public class DetailsVM {
+    DetailsActivity mDetailsActivity;
+    ActionBar mActionBar;
+    RecyclerView mRecyclerView;
+    Intent mIntent;
+
+    public DetailsVM(DetailsActivity detailsActivity){
+        mDetailsActivity = detailsActivity;
+        mIntent = mDetailsActivity.getIntent();
+    }
+
+    public void initializeLayout() {
+        configureActionBar();
+        configureListView();
+    }
+
+    private void configureListView() {
+        String[] values = new String[] { "Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+
+        ListView listView = (ListView) mDetailsActivity.findViewById(R.id.a_details_listview);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mDetailsActivity,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        listView.setAdapter(adapter);
+    }
+
+    private void configureActionBar() {
+        Toolbar toolbar = (Toolbar) mDetailsActivity.findViewById(R.id.a_details_toolbar);
+
+        mDetailsActivity.setSupportActionBar(toolbar);
+        mActionBar = mDetailsActivity.getSupportActionBar();
+
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setSubtitle("");
+        }
+
+        if (mIntent.hasExtra(Constants.ChartTitleKey)){
+            mActionBar.setSubtitle(mIntent.getStringExtra(Constants.ChartTitleKey));
+        }
+    }
+}

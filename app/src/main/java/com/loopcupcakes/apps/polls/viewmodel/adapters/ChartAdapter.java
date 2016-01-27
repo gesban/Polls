@@ -1,6 +1,7 @@
 package com.loopcupcakes.apps.polls.viewmodel.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         public TextView textViewDate;
         public TextView textViewCount;
         public TextView textViewUpdated;
+        public Chart chartItem;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -41,6 +45,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     Log.d("TAG", "onClick: " + v.toString());
+                    Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                    intent.putExtra(Constants.ChartTitleKey, textViewTitle.getText());
+                    intent.putExtra(Constants.ChartItemKey, chartItem);
+                    v.getContext().startActivity(intent);
                 }
             });
         }
@@ -75,6 +83,8 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         textViewDate.setText(chart.getElectionDate());
         textViewCount.setText(String.valueOf(chart.getPollCount()));
         textViewUpdated.setText(chart.getLastUpdated());
+
+        holder.chartItem = chart;
     }
 
     @Override
