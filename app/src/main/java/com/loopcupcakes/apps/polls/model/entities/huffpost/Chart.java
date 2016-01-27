@@ -1,13 +1,16 @@
 
 package com.loopcupcakes.apps.polls.model.entities.huffpost;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chart {
+public class Chart implements Parcelable {
 
     @SerializedName("title")
     @Expose
@@ -44,7 +47,7 @@ public class Chart {
     private List<EstimatesByDate> estimatesByDate = new ArrayList<EstimatesByDate>();
 
     /**
-     * 
+     *
      * @return
      *     The title
      */
@@ -53,7 +56,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param title
      *     The title
      */
@@ -62,7 +65,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The slug
      */
@@ -71,7 +74,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param slug
      *     The slug
      */
@@ -80,7 +83,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The topic
      */
@@ -89,7 +92,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param topic
      *     The topic
      */
@@ -98,7 +101,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The state
      */
@@ -107,7 +110,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param state
      *     The state
      */
@@ -116,7 +119,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The shortTitle
      */
@@ -125,7 +128,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param shortTitle
      *     The short_title
      */
@@ -134,7 +137,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The electionDate
      */
@@ -143,7 +146,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param electionDate
      *     The election_date
      */
@@ -152,7 +155,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The pollCount
      */
@@ -161,7 +164,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param pollCount
      *     The poll_count
      */
@@ -170,7 +173,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The lastUpdated
      */
@@ -179,7 +182,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param lastUpdated
      *     The last_updated
      */
@@ -188,7 +191,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The url
      */
@@ -197,7 +200,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param url
      *     The url
      */
@@ -206,7 +209,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The estimates
      */
@@ -215,7 +218,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param estimates
      *     The estimates
      */
@@ -224,7 +227,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @return
      *     The estimatesByDate
      */
@@ -233,7 +236,7 @@ public class Chart {
     }
 
     /**
-     * 
+     *
      * @param estimatesByDate
      *     The estimates_by_date
      */
@@ -241,4 +244,76 @@ public class Chart {
         this.estimatesByDate = estimatesByDate;
     }
 
+
+    protected Chart(Parcel in) {
+        title = in.readString();
+        slug = in.readString();
+        topic = in.readString();
+        state = in.readString();
+        shortTitle = in.readString();
+        electionDate = in.readString();
+        pollCount = in.readByte() == 0x00 ? null : in.readInt();
+        lastUpdated = in.readString();
+        url = in.readString();
+        if (in.readByte() == 0x01) {
+            estimates = new ArrayList<Estimate>();
+            in.readList(estimates, Estimate.class.getClassLoader());
+        } else {
+            estimates = null;
+        }
+        if (in.readByte() == 0x01) {
+            estimatesByDate = new ArrayList<EstimatesByDate>();
+            in.readList(estimatesByDate, EstimatesByDate.class.getClassLoader());
+        } else {
+            estimatesByDate = null;
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(slug);
+        dest.writeString(topic);
+        dest.writeString(state);
+        dest.writeString(shortTitle);
+        dest.writeString(electionDate);
+        if (pollCount == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(pollCount);
+        }
+        dest.writeString(lastUpdated);
+        dest.writeString(url);
+        if (estimates == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(estimates);
+        }
+        if (estimatesByDate == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(estimatesByDate);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Chart> CREATOR = new Parcelable.Creator<Chart>() {
+        @Override
+        public Chart createFromParcel(Parcel in) {
+            return new Chart(in);
+        }
+
+        @Override
+        public Chart[] newArray(int size) {
+            return new Chart[size];
+        }
+    };
 }

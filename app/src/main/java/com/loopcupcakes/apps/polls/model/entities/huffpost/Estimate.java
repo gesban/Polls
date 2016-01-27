@@ -1,10 +1,13 @@
 
 package com.loopcupcakes.apps.polls.model.entities.huffpost;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Estimate {
+public class Estimate implements Parcelable {
 
     @SerializedName("choice")
     @Expose
@@ -29,7 +32,7 @@ public class Estimate {
     private Boolean incumbent;
 
     /**
-     * 
+     *
      * @return
      *     The choice
      */
@@ -38,7 +41,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param choice
      *     The choice
      */
@@ -47,7 +50,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The value
      */
@@ -56,7 +59,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param value
      *     The value
      */
@@ -65,7 +68,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The leadConfidence
      */
@@ -74,7 +77,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param leadConfidence
      *     The lead_confidence
      */
@@ -83,7 +86,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The firstName
      */
@@ -92,7 +95,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param firstName
      *     The first_name
      */
@@ -101,7 +104,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The lastName
      */
@@ -110,7 +113,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param lastName
      *     The last_name
      */
@@ -119,7 +122,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The party
      */
@@ -128,7 +131,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param party
      *     The party
      */
@@ -137,7 +140,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @return
      *     The incumbent
      */
@@ -146,7 +149,7 @@ public class Estimate {
     }
 
     /**
-     * 
+     *
      * @param incumbent
      *     The incumbent
      */
@@ -154,4 +157,53 @@ public class Estimate {
         this.incumbent = incumbent;
     }
 
+
+    protected Estimate(Parcel in) {
+        choice = in.readString();
+        value = in.readByte() == 0x00 ? null : in.readDouble();
+        leadConfidence = (Object) in.readValue(Object.class.getClassLoader());
+        firstName = in.readString();
+        lastName = in.readString();
+        party = in.readString();
+        byte incumbentVal = in.readByte();
+        incumbent = incumbentVal == 0x02 ? null : incumbentVal != 0x00;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(choice);
+        if (value == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeDouble(value);
+        }
+        dest.writeValue(leadConfidence);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeString(party);
+        if (incumbent == null) {
+            dest.writeByte((byte) (0x02));
+        } else {
+            dest.writeByte((byte) (incumbent ? 0x01 : 0x00));
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Estimate> CREATOR = new Parcelable.Creator<Estimate>() {
+        @Override
+        public Estimate createFromParcel(Parcel in) {
+            return new Estimate(in);
+        }
+
+        @Override
+        public Estimate[] newArray(int size) {
+            return new Estimate[size];
+        }
+    };
 }
