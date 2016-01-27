@@ -5,7 +5,6 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/a_details_tab"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -13,6 +12,7 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/a_details_pager"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/a_details_tab"/>

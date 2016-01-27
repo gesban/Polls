@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
@@ -49,16 +48,16 @@ public class DetailsVM {
         mTabLayout = (TabLayout) mDetailsActivity.findViewById(R.id.a_details_tab);
         mTabLayout.addTab(mTabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_current_tab)));
         mTabLayout.addTab(mTabLayout.newTab().setText(mDetailsActivity.getString(R.string.a_details_historical_tab)));
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.d(TAG, "Selected: " + tab.getText());
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                Log.d(TAG, "UnSelected: " + tab.getTag());
             }
 
             @Override
