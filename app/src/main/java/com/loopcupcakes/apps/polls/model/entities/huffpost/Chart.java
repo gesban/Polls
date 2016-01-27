@@ -1,10 +1,11 @@
 
 package com.loopcupcakes.apps.polls.model.entities.huffpost;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Chart {
 
@@ -38,6 +39,9 @@ public class Chart {
     @SerializedName("estimates")
     @Expose
     private List<Estimate> estimates = new ArrayList<Estimate>();
+    @SerializedName("estimates_by_date")
+    @Expose
+    private List<EstimatesByDate> estimatesByDate = new ArrayList<EstimatesByDate>();
 
     /**
      * 
@@ -217,6 +221,24 @@ public class Chart {
      */
     public void setEstimates(List<Estimate> estimates) {
         this.estimates = estimates;
+    }
+
+    /**
+     * 
+     * @return
+     *     The estimatesByDate
+     */
+    public List<EstimatesByDate> getEstimatesByDate() {
+        return estimatesByDate;
+    }
+
+    /**
+     * 
+     * @param estimatesByDate
+     *     The estimates_by_date
+     */
+    public void setEstimatesByDate(List<EstimatesByDate> estimatesByDate) {
+        this.estimatesByDate = estimatesByDate;
     }
 
 }

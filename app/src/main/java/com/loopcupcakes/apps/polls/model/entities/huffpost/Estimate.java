@@ -1,3 +1,4 @@
+
 package com.loopcupcakes.apps.polls.model.entities.huffpost;
 
 import com.google.gson.annotations.Expose;
@@ -16,16 +17,16 @@ public class Estimate {
     private Object leadConfidence;
     @SerializedName("first_name")
     @Expose
-    private Object firstName;
+    private String firstName;
     @SerializedName("last_name")
     @Expose
-    private Object lastName;
+    private String lastName;
     @SerializedName("party")
     @Expose
-    private Object party;
+    private String party;
     @SerializedName("incumbent")
     @Expose
-    private Object incumbent;
+    private Boolean incumbent;
 
     /**
      * 
@@ -86,7 +87,7 @@ public class Estimate {
      * @return
      *     The firstName
      */
-    public Object getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -95,7 +96,7 @@ public class Estimate {
      * @param firstName
      *     The first_name
      */
-    public void setFirstName(Object firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -104,7 +105,7 @@ public class Estimate {
      * @return
      *     The lastName
      */
-    public Object getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -113,7 +114,7 @@ public class Estimate {
      * @param lastName
      *     The last_name
      */
-    public void setLastName(Object lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -122,7 +123,7 @@ public class Estimate {
      * @return
      *     The party
      */
-    public Object getParty() {
+    public String getParty() {
         return party;
     }
 
@@ -131,7 +132,7 @@ public class Estimate {
      * @param party
      *     The party
      */
-    public void setParty(Object party) {
+    public void setParty(String party) {
         this.party = party;
     }
 
@@ -140,7 +141,7 @@ public class Estimate {
      * @return
      *     The incumbent
      */
-    public Object getIncumbent() {
+    public Boolean getIncumbent() {
         return incumbent;
     }
 
@@ -149,7 +150,7 @@ public class Estimate {
      * @param incumbent
      *     The incumbent
      */
-    public void setIncumbent(Object incumbent) {
+    public void setIncumbent(Boolean incumbent) {
         this.incumbent = incumbent;
     }
 
