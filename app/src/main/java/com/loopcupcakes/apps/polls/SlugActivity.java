@@ -1,7 +1,7 @@
 package com.loopcupcakes.apps.polls;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.loopcupcakes.apps.polls.viewmodel.SlugVM;
 
@@ -15,5 +15,6 @@ public class SlugActivity extends AppCompatActivity {
         setContentView(R.layout.activity_slug);
 
         mSlugVM = new SlugVM(this);
+        mSlugVM.initializeLayouts();
     }
 }

@@ -1,6 +1,5 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
-
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
