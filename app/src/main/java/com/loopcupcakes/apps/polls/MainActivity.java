@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 
 public class MainActivity extends AppCompatActivity {
-
+    // TODO: 1/26/16 handle savedInstance
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
 

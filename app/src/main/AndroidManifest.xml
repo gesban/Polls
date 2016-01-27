@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SlugActivity">
+        <activity
+            android:name=".SlugActivity"
+            android:parentActivityName=".MainActivity">
 
         </activity>
 

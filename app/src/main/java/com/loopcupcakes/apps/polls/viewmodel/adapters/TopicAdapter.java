@@ -40,11 +40,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new SlugAsyncTask().execute(slug);
-
                     Intent intent = new Intent(v.getContext(), SlugActivity.class);
                     intent.putExtra(Constants.SlugKey, slug);
                     v.getContext().startActivity(intent);
+                    new SlugAsyncTask().execute(slug);
                 }
             });
         }
@@ -59,7 +58,6 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         mContext = parent.getContext();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
-
         View contactView = inflater.inflate(R.layout.recycler_item_topic, parent, false);
 
         return new ViewHolder(contactView);

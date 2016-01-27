@@ -4,10 +4,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.viewmodel.SlugVM;
 import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,15 +19,21 @@ import retrofit2.Retrofit;
 /**
  * Created by evin on 1/26/16.
  */
-public class SlugAsyncTask extends AsyncTask<String, Void, Void> {
+public class SlugAsyncTask extends AsyncTask<String, Void, List<Chart>> {
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.SlugAsyncTaskTAG_;
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        SlugVM.mCharts.clear();
+    }
 
     @Override
-    protected Void doInBackground(String... params) {
+    protected List<Chart> doInBackground(String... params) {
 
-        if (params.length < 1){
+        if (params.length < 1) {
             return null;
         }
 
@@ -38,17 +46,22 @@ public class SlugAsyncTask extends AsyncTask<String, Void, Void> {
 
         Call<List<Chart>> call = pollster.contributors(params[0]);
 
-        List<Chart> charts;
+        List<Chart> charts = null;
 
         try {
             charts = call.execute().body();
-            for (Chart chart : charts) {
-                System.out.println(chart.getTitle());
-            }
         } catch (IOException e) {
             Log.e(TAG, "doInBackground: ", e);
         }
 
-        return null;
+        return charts;
+    }
+
+    @Override
+    protected void onPostExecute(List<Chart> charts) {
+        super.onPostExecute(charts);
+
+        SlugVM.mCharts.addAll(charts);
+        SlugVM.mChartAdapter.notifyDataSetChanged();
     }
 }

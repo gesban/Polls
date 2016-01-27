@@ -11,6 +11,7 @@ public class SlugActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: 1/26/16 Add ProgressBar when searching
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slug);
 
