@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 /**
  * Created by evin on 1/26/16.
  */
-public class SlugAsyncTask extends AsyncTask<String, Void, List<Chart>> {
+public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.SlugAsyncTaskTAG_;
 
