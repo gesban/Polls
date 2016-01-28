@@ -29,6 +29,7 @@ public class CandidateAdapter extends RecyclerView.Adapter<CandidateAdapter.View
         public TextView textViewName;
         public TextView textViewParty;
         public TextView textViewValue;
+        public TextView textViewPosition;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -36,6 +37,7 @@ public class CandidateAdapter extends RecyclerView.Adapter<CandidateAdapter.View
             textViewName = (TextView) itemView.findViewById(R.id.recycler_candidate_name_txt);
             textViewParty = (TextView) itemView.findViewById(R.id.recycler_candidate_party_txt);
             textViewValue = (TextView) itemView.findViewById(R.id.recycler_candidate_value_txt);
+            textViewPosition = (TextView) itemView.findViewById(R.id.recycler_candidate_position_txt);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,10 +74,12 @@ public class CandidateAdapter extends RecyclerView.Adapter<CandidateAdapter.View
         TextView textViewName = holder.textViewName;
         TextView textViewParty = holder.textViewParty;
         TextView textViewValue = holder.textViewValue;
+        TextView textViewPosition = holder.textViewPosition;
 
         textViewName.setText(strName);
         textViewParty.setText(estimate.getParty());
         textViewValue.setText(String.valueOf(estimate.getValue()));
+        textViewPosition.setText(String.valueOf(position + 1));
     }
 
     @Override

@@ -130,8 +130,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/f_details_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/a_main_recycler_margin">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
 
