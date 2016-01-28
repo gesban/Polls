@@ -34,6 +34,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewTitle;
         public TextView textViewState;
+        public TextView textViewElection;
         public TextView textViewDate;
         public TextView textViewCount;
         public TextView textViewUpdated;
@@ -49,6 +50,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
             textViewTitle = (TextView) itemView.findViewById(R.id.recycler_chart_title_txt);
             textViewState = (TextView) itemView.findViewById(R.id.recycler_chart_state_txt);
             textViewDate = (TextView) itemView.findViewById(R.id.recycler_chart_date_txt);
+            textViewElection = (TextView) itemView.findViewById(R.id.recycler_chart_election_txt);
             textViewCount = (TextView) itemView.findViewById(R.id.recycler_chart_count_txt);
             textViewUpdated = (TextView) itemView.findViewById(R.id.recycler_chart_updated_txt);
             textViewWinner = (TextView) itemView.findViewById(R.id.recycler_chart_winner_name_txt);
@@ -92,6 +94,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         TextView textViewTitle = holder.textViewTitle;
         TextView textViewState = holder.textViewState;
         TextView textViewDate = holder.textViewDate;
+        TextView textViewElection = holder.textViewElection;
         TextView textViewCount = holder.textViewCount;
         TextView textViewUpdated = holder.textViewUpdated;
         TextView textViewWinner = holder.textViewWinner;
@@ -102,7 +105,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         textViewTitle.setText(chart.getTitle());
         textViewState.setText(chart.getState());
 
-        validateIfDateSet(chart.getElectionDate(), textViewDate);
+        validateIfDateSet(chart.getElectionDate(), textViewDate, textViewElection);
 
         textViewCount.setText(String.valueOf(chart.getPollCount()));
 
@@ -126,9 +129,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         }
     }
 
-    private void validateIfDateSet(String electionDate, TextView textViewDate) {
+    private void validateIfDateSet(String electionDate, TextView textViewDate, TextView textViewElection) {
         if (electionDate == null || electionDate.length() == 0){
-            textViewDate.setText(R.string.chart_election_date_to_be_determined_message);
+            textViewDate.setVisibility(View.GONE);
+            textViewElection.setVisibility(View.GONE);
         }else {
             textViewDate.setText(electionDate);
         }

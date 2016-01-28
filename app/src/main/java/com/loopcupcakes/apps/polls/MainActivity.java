@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 RecyclerView animations
     // TODO: 1/28/16 Set nice icon
     // TODO: 1/28/16 Check if Internet connection available
+    // TODO: 1/28/16 Fix landscape
+    // TODO: 1/28/16 Add image to topics
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
