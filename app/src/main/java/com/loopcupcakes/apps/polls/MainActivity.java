@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 Implement Crashalytics
     // TODO: 1/28/16 Implement Analytics
     // TODO: 1/28/16 RecyclerView animations
+    // TODO: 1/28/16 Set nice icon
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;

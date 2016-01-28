@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.widget.ProgressBar;
 
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
@@ -22,12 +24,13 @@ public class SlugVM {
 
     private static final String TAG = Constants.SlugVMTAG_;
     private SlugActivity mSlugActivity;
-    private RecyclerView mRecyclerView;
 
     public static ChartAdapter mChartAdapter;
     public static List<Chart> mCharts;
 
     private ActionBar mActionBar;
+    private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
 
     static {
         mCharts = new ArrayList<>();
@@ -40,6 +43,7 @@ public class SlugVM {
 
     public void initializeLayouts() {
         mRecyclerView = (RecyclerView) mSlugActivity.findViewById(R.id.a_slug_recycler);
+        mProgressBar = (ProgressBar) mSlugActivity.findViewById(R.id.a_slug_progressbar);
 
         configureActionBar();
         configureRecyclerView();
@@ -54,8 +58,11 @@ public class SlugVM {
     }
 
     private void configureActionBar() {
+        Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
         String title = mSlugActivity.getString(R.string.app_name) + " | " + mSlugActivity.getString(R.string.a_slug_title);
         Intent intent = mSlugActivity.getIntent();
+
+        mSlugActivity.setSupportActionBar(toolbar);
 
         mActionBar = mSlugActivity.getSupportActionBar();
 
