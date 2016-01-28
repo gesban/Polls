@@ -2,11 +2,12 @@ package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,8 +17,8 @@ import android.widget.FrameLayout;
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
-import com.loopcupcakes.apps.polls.view.fragments.HomeFragment;
-import com.loopcupcakes.apps.polls.view.fragments.LoadingFragment;
+import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
+import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -33,6 +34,7 @@ import java.util.List;
 public class MainVM {
     private static final String TAG_ = Constants.MainVMTAG_;
     public static ArrayList<Topic> mTopics;
+    public static TopicAdapter mTopicAdapter;
 
     private MainActivity mMainActivity;
     private ParseVM mParseVM;
@@ -40,13 +42,16 @@ public class MainVM {
     private ActionBar mActionBar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
-    private FrameLayout mMainFrameLayout;
+    private RecyclerView mRecyclerView;
+
+    static {
+        mTopics = new ArrayList<>();
+        mTopicAdapter = new TopicAdapter(mTopics);
+    }
 
     public MainVM(MainActivity mainActivity) {
         mMainActivity = mainActivity;
         mParseVM = new ParseVM(mMainActivity);
-
-        mTopics = new ArrayList<>();
     }
 
     public void initializeThirdPartyLibraries() {
@@ -54,26 +59,22 @@ public class MainVM {
     }
 
     public void initializeLayouts() {
-
         mDrawerLayout = (DrawerLayout) mMainActivity.findViewById(R.id.a_main_drawer);
         mNavigationView = (NavigationView) mMainActivity.findViewById(R.id.a_main_nav);
-        mMainFrameLayout = (FrameLayout) mMainActivity.findViewById(R.id.a_main_frame);
+        mRecyclerView = (RecyclerView) mMainActivity.findViewById(R.id.a_main_recycler);
+
 
         configureActionBar();
-        loadFragment(Constants.FRAGMENT_TYPE.LOADING);
         retrieveTopics();
+        configureRecycler();
     }
 
-    private void loadFragment(Constants.FRAGMENT_TYPE fragment_type) {
-        Fragment fragment;
-        switch (fragment_type) {
-            case HOME:
-                fragment = new HomeFragment();
-                break;
-            default:
-                fragment = new LoadingFragment();
-        }
-        mMainActivity.getSupportFragmentManager().beginTransaction().replace(mMainFrameLayout.getId(), fragment).commit();
+    private void configureRecycler() {
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(mMainActivity.getString(R.string.recycler_home_decoration)));
+
+        mRecyclerView.setAdapter(mTopicAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+        mRecyclerView.addItemDecoration(spacesItemDecoration);
     }
 
     private void configureActionBar() {
@@ -139,7 +140,6 @@ public class MainVM {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null && objects != null && objects.size() > 0) {
                     updateTopics(objects);
-                    loadFragment(Constants.FRAGMENT_TYPE.HOME);
                 } else {
                     retrieveTopicsOnline();
                 }
@@ -148,7 +148,8 @@ public class MainVM {
     }
 
     private void retrieveTopicsOnline() {
-        //// TODO: 1/26/16 Update localstore on connection
+        // TODO: 1/26/16 Update localstore on connection
+        // TODO: 1/28/16 Fix SnackBar parent
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -156,9 +157,8 @@ public class MainVM {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     updateTopics(objects);
-                    loadFragment(Constants.FRAGMENT_TYPE.HOME);
                 } else {
-                    Snackbar snackbar = Snackbar.make(mMainFrameLayout, R.string.main_vm_error_internet, Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(mDrawerLayout, R.string.main_vm_error_internet, Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
@@ -170,7 +170,7 @@ public class MainVM {
             object.pinInBackground();
             mTopics.add((Topic) object);
         }
-        HomeFragment.mTopicAdapter.notifyDataSetChanged();
+        mTopicAdapter.notifyDataSetChanged();
     }
 
 }

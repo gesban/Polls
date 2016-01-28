@@ -9,6 +9,7 @@ import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 
 public class MainActivity extends AppCompatActivity {
     // TODO: 1/26/16 Handle savedInstance
+    // TODO: 1/28/16 Menu items
     // TODO: 1/27/16 Remove Loading Fragment and set a ProgressBar above
     // TODO: 1/27/16 Handle scrollable toolbar http://android-developers.blogspot.com/2015/05/android-design-support-library.html
     // TODO: 1/27/16 Implement NestedScrollView http://developer.android.com/reference/android/support/design/widget/AppBarLayout.html
