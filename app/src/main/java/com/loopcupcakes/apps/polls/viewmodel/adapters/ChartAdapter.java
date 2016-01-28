@@ -3,6 +3,7 @@ package com.loopcupcakes.apps.polls.viewmodel.adapters;
 import android.content.Context;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.view.fragments.ChartFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
@@ -19,6 +21,7 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,6 +39,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         public TextView textViewDate;
         public TextView textViewCount;
         public TextView textViewUpdated;
+        public TextView textViewWinner;
+        public TextView textViewLoser;
+        public TextView textViewWinnerValue;
+        public TextView textViewLoserValue;
         public Chart chartItem;
 
         public ViewHolder(View itemView) {
@@ -46,6 +53,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
             textViewDate = (TextView) itemView.findViewById(R.id.recycler_chart_date_txt);
             textViewCount = (TextView) itemView.findViewById(R.id.recycler_chart_count_txt);
             textViewUpdated = (TextView) itemView.findViewById(R.id.recycler_chart_updated_txt);
+            textViewWinner = (TextView) itemView.findViewById(R.id.recycler_chart_winner_name_txt);
+            textViewLoser = (TextView) itemView.findViewById(R.id.recycler_chart_loser_name_txt);
+            textViewWinnerValue = (TextView) itemView.findViewById(R.id.recycler_chart_winner_value_txt);
+            textViewLoserValue = (TextView) itemView.findViewById(R.id.recycler_chart_loser_value_txt);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,6 +96,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         TextView textViewDate = holder.textViewDate;
         TextView textViewCount = holder.textViewCount;
         TextView textViewUpdated = holder.textViewUpdated;
+        TextView textViewWinner = holder.textViewWinner;
+        TextView textViewLoser = holder.textViewLoser;
+        TextView textViewWinnerValue = holder.textViewWinnerValue;
+        TextView textViewLoserValue = holder.textViewLoserValue;
 
         textViewTitle.setText(chart.getTitle());
         textViewState.setText(chart.getState());
@@ -96,7 +111,21 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         String formattedDate = formatDate(chart.getLastUpdated());
         textViewUpdated.setText(formattedDate);
 
+        setWinnerLoser(textViewWinner, textViewLoser, textViewWinnerValue, textViewLoserValue, chart);
+
         holder.chartItem = chart;
+    }
+
+    private void setWinnerLoser(TextView textViewWinner, TextView textViewLoser, TextView textViewWinnerValue, TextView textViewLoserValue, Chart chart) {
+        List<Estimate> estimates = chart.getEstimates();
+        if (estimates.size() > 1){
+            Estimate winner = estimates.get(0);
+            Estimate loser = estimates.get(1);
+            textViewWinner.setText(winner.getChoice());
+            textViewWinnerValue.setText(String.format("%.1f", winner.getValue()));
+            textViewLoser.setText(loser.getChoice());
+            textViewLoserValue.setText(String.format("%.1f", loser.getValue()));
+        }
     }
 
     private void validateIfDateSet(String electionDate, TextView textViewDate) {
