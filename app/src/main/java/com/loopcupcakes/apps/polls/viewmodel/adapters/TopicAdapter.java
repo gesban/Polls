@@ -66,7 +66,8 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Topic topic = mTopics.get(position);
-        
+        String subtitle = topic.getDescription() + " " + topic.getYear() + ". " + topic.getDelimiter() + ".";
+
         TextView textViewDescription = holder.textViewDescription;
         TextView textViewDelimiter = holder.textViewDelimiter;
         TextView textViewYear = holder.textViewYear;
@@ -76,7 +77,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         textViewYear.setText(String.valueOf(topic.getYear()));
 
         holder.slug = topic.getName();
-        holder.subtitle = topic.getDescription() + " " + topic.getYear() + ". " + topic.getDelimiter();
+        holder.subtitle = subtitle;
     }
 
     @Override
