@@ -48,7 +48,6 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
                     intent.putExtra(Constants.ChartTitleKey, textViewTitle.getText());
                     intent.putExtra(Constants.ChartItemKey, chartItem);
                     v.getContext().startActivity(intent);
-                    new EstimatesAsyncTask().execute(chartItem.getSlug());
                 }
             });
         }

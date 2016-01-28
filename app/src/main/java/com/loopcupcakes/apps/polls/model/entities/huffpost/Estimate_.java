@@ -52,6 +52,13 @@ public class Estimate_ implements Parcelable {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return "Estimate_{" +
+                "choice='" + choice + '\'' +
+                ", value=" + value +
+                '}';
+    }
 
     protected Estimate_(Parcel in) {
         choice = in.readString();

@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.view.fragments.HistoryFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
@@ -20,6 +21,11 @@ import retrofit2.Retrofit;
 public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.EstimatesTaskTAG_;
+    private HistoryFragment mHistoryFragment;
+
+    public EstimatesAsyncTask(HistoryFragment historyFragment) {
+        mHistoryFragment = historyFragment;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -58,5 +64,6 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
     protected void onPostExecute(Chart chart) {
         super.onPostExecute(chart);
         DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
+        mHistoryFragment.buildChart();
     }
 }

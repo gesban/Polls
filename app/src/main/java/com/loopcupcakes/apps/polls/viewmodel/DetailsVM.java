@@ -45,10 +45,10 @@ public class DetailsVM {
     }
 
     public void initializeLayout() {
+        readEstimates();
         configureActionBar();
         configureTabBar();
         configurePager();
-        readEstimates();
     }
 
     private void readEstimates() {

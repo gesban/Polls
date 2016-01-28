@@ -1,8 +1,11 @@
 package com.loopcupcakes.apps.polls.view.fragments;
 
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +17,30 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate_;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
+import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
+import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
+import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HistoryFragment extends Fragment {
+    private static final String TAG = Constants.HistoryFragmentTAG_;
+    // TODO: 1/27/16 call EstimatesAsyncTask before HistoryFragment starts
 
+    private LineChart mLineChart;
 
     public HistoryFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,41 +52,53 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LineChart lineChart = (LineChart) view.findViewById(R.id.f_history_chart);
+        mLineChart = (LineChart) view.findViewById(R.id.f_history_chart);
+        new EstimatesAsyncTask(this).execute(DetailsVM.mChart.getSlug());
+    }
 
-        ArrayList<Entry> valsComp1 = new ArrayList<Entry>();
-        ArrayList<Entry> valsComp2 = new ArrayList<Entry>();
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser) {
+            Activity a = getActivity();
+            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
+    }
 
-        Entry c1e1 = new Entry(100.000f, 0); // 0 == quarter 1
-        valsComp1.add(c1e1);
-        Entry c1e2 = new Entry(50.000f, 1); // 1 == quarter 2 ...
-        valsComp1.add(c1e2);
-        // and so on ...
+    public void buildChart(){
+        // TODO: 1/27/16 Do in AsyncTask
+        HashMap<String, ArrayList<Entry>> hashMapArrayList = new HashMap<>();
+        ArrayList<String> datesArrayList = new ArrayList<>();
+        int i = 0;
 
-        Entry c2e1 = new Entry(120.000f, 0); // 0 == quarter 1
-        valsComp2.add(c2e1);
-        Entry c2e2 = new Entry(110.000f, 1); // 1 == quarter 2 ...
-        valsComp2.add(c2e2);
-        //...
+        for (Estimate estimate : DetailsVM.mChart.getEstimates()){
+            hashMapArrayList.put(estimate.getChoice(), new ArrayList<Entry>());
+        }
 
-        LineDataSet setComp1 = new LineDataSet(valsComp1, "Company 1");
-        setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        LineDataSet setComp2 = new LineDataSet(valsComp2, "Company 2");
-        setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
-
-        // use the interface ILineDataSet
+        for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate){
+            String date = estimatesByDate.getDate();
+            datesArrayList.add(date);
+            for (Estimate_ estimate_ : estimatesByDate.getEstimates()){
+                Entry entry = new Entry(estimate_.getValue().floatValue(), i);
+                String choice = estimate_.getChoice();
+                if (hashMapArrayList.get(choice) != null){
+                    hashMapArrayList.get(estimate_.getChoice()).add(entry);
+                }
+            }
+            i++;
+        }
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-        dataSets.add(setComp1);
-        dataSets.add(setComp2);
 
-        ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("1.Q"); xVals.add("2.Q"); xVals.add("3.Q"); xVals.add("4.Q");
+        for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
+            LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
+            dataSets.add(setComp);
+        }
 
-        LineData data = new LineData(xVals, dataSets);
-        lineChart.setData(data);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setDescription("");
-        lineChart.setDrawBorders(false);
-        lineChart.invalidate(); // refresh
+        LineData data = new LineData(datesArrayList, dataSets);
+        mLineChart.setData(data);
+        mLineChart.setDrawGridBackground(false);
+        mLineChart.setDescription("");
+        mLineChart.setDrawBorders(false);
+        mLineChart.invalidate();
     }
 }

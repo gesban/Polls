@@ -55,6 +55,13 @@ public class EstimatesByDate implements Parcelable {
         this.estimates = estimates;
     }
 
+    @Override
+    public String toString() {
+        return "EstimatesByDate{" +
+                "date='" + date + '\'' +
+                ", estimates=" + estimates +
+                '}';
+    }
 
     protected EstimatesByDate(Parcel in) {
         date = in.readString();
