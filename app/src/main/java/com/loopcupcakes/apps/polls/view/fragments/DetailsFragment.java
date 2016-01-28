@@ -1,7 +1,6 @@
 package com.loopcupcakes.apps.polls.view.fragments;
 
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -20,6 +19,7 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.TextViewMagic;
 
 import java.util.ArrayList;
 
@@ -28,6 +28,7 @@ import java.util.ArrayList;
  */
 public class DetailsFragment extends DialogFragment {
 
+    private static final String TAG = Constants.DetailsFragmentTAG_;
     private static CandidateAdapter mCandidateAdapter;
     private static ArrayList<Estimate> mEstimates;
 
@@ -92,13 +93,19 @@ public class DetailsFragment extends DialogFragment {
     }
 
     private void updateTextViews(View view) {
-        Activity activity = getActivity();
-        if (activity == null){
-            return;
-        }
-
         TextView textViewTitle = (TextView) view.findViewById(R.id.f_details_title_txt);
+        TextView textViewState = (TextView) view.findViewById(R.id.f_details_state_txt);
+        TextView textViewDate = (TextView) view.findViewById(R.id.f_details_date_txt);
+        TextView textViewElection = (TextView) view.findViewById(R.id.f_details_election_txt);
+        TextView textViewCount = (TextView) view.findViewById(R.id.f_details_count_txt);
+        TextView textViewUpdated = (TextView) view.findViewById(R.id.f_details_updated_txt);
+
         textViewTitle.setText(mChart.getTitle());
+        textViewState.setText(mChart.getState());
+        textViewCount.setText(String.valueOf(mChart.getPollCount()));
+
+        TextViewMagic.formatDate(mChart.getLastUpdated(), textViewUpdated);
+        TextViewMagic.validateIfDateSet(mChart.getElectionDate(), textViewDate, textViewElection);
     }
 
     private void refreshEstimates(Chart chart) {

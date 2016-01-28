@@ -3,7 +3,6 @@ package com.loopcupcakes.apps.polls.viewmodel.adapters;
 import android.content.Context;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,12 @@ import android.widget.TextView;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
-import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.view.fragments.DetailsFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.TextViewMagic;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by evin on 1/26/16.
@@ -104,51 +99,13 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
 
         textViewTitle.setText(chart.getTitle());
         textViewState.setText(chart.getState());
-
-        validateIfDateSet(chart.getElectionDate(), textViewDate, textViewElection);
-
         textViewCount.setText(String.valueOf(chart.getPollCount()));
 
-        String formattedDate = formatDate(chart.getLastUpdated());
-        textViewUpdated.setText(formattedDate);
-
-        setWinnerLoser(textViewWinner, textViewLoser, textViewWinnerValue, textViewLoserValue, chart);
+        TextViewMagic.validateIfDateSet(chart.getElectionDate(), textViewDate, textViewElection);
+        TextViewMagic.formatDate(chart.getLastUpdated(), textViewUpdated);
+        TextViewMagic.setWinnerLoser(textViewWinner, textViewLoser, textViewWinnerValue, textViewLoserValue, chart);
 
         holder.chartItem = chart;
-    }
-
-    private void setWinnerLoser(TextView textViewWinner, TextView textViewLoser, TextView textViewWinnerValue, TextView textViewLoserValue, Chart chart) {
-        List<Estimate> estimates = chart.getEstimates();
-        if (estimates.size() > 1){
-            Estimate winner = estimates.get(0);
-            Estimate loser = estimates.get(1);
-            textViewWinner.setText(winner.getChoice());
-            textViewWinnerValue.setText(String.format("%.1f", winner.getValue()));
-            textViewLoser.setText(loser.getChoice());
-            textViewLoserValue.setText(String.format("%.1f", loser.getValue()));
-        }
-    }
-
-    private void validateIfDateSet(String electionDate, TextView textViewDate, TextView textViewElection) {
-        if (electionDate == null || electionDate.length() == 0){
-            textViewDate.setVisibility(View.GONE);
-            textViewElection.setVisibility(View.GONE);
-        }else {
-            textViewDate.setText(electionDate);
-        }
-    }
-
-    private String formatDate(String lastUpdatedDate) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'", Locale.US);
-        DateFormat dateFormat = DateFormat.getDateTimeInstance();
-
-        try {
-            return dateFormat.format(simpleDateFormat.parse(lastUpdatedDate));
-        } catch (ParseException e) {
-            Log.e(TAG, "formatDate: " + e.toString(), e);
-        }
-
-        return lastUpdatedDate;
     }
 
     @Override
