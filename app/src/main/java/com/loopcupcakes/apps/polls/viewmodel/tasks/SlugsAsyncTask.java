@@ -75,8 +75,9 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
             }
             SlugVM.mChartAdapter.notifyDataSetChanged();
             mSlugVM.finishLoading(true);
+        }else {
+            mSlugVM.finishLoading(false);
         }
-        mSlugVM.finishLoading(false);
 
     }
 }

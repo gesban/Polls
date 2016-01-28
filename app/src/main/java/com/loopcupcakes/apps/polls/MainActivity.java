@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 Implement Analytics
     // TODO: 1/28/16 RecyclerView animations
     // TODO: 1/28/16 Set nice icon
+    // TODO: 1/28/16 Check if Internet connection available
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
