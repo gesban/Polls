@@ -28,6 +28,7 @@ public class DetailsVM {
     TabLayout mTabLayout;
     Intent mIntent;
 
+    public static Chart mChart;
     public static ArrayList<Estimate> mEstimates;
     public static ArrayList<EstimatesByDate> mEstimatesByDate;
     public static CandidateAdapter mCandidateAdapter;
@@ -52,10 +53,10 @@ public class DetailsVM {
 
     private void readEstimates() {
         if (mIntent.hasExtra(Constants.ChartItemKey)){
-            Chart aux = mIntent.getParcelableExtra(Constants.ChartItemKey);
+            mChart = mIntent.getParcelableExtra(Constants.ChartItemKey);
 
             mEstimates.clear();
-            mEstimates.addAll(aux.getEstimates());
+            mEstimates.addAll(mChart.getEstimates());
             mCandidateAdapter.notifyDataSetChanged();
         }
     }
