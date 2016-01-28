@@ -61,12 +61,15 @@ public class CandidateAdapter extends RecyclerView.Adapter<CandidateAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Estimate estimate = mEstimates.get(position);
+        String strName = (estimate.getFirstName() == null || estimate.getLastName() == null) ?
+                estimate.getChoice() :
+                estimate.getFirstName() + " " + estimate.getLastName();
 
         TextView textViewName = holder.textViewName;
         TextView textViewParty = holder.textViewParty;
         TextView textViewValue = holder.textViewValue;
 
-        textViewName.setText(estimate.getFirstName() + " " + estimate.getLastName());
+        textViewName.setText(strName);
         textViewParty.setText(estimate.getParty());
         textViewValue.setText(String.valueOf(estimate.getValue()));
     }
