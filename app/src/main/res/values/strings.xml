@@ -24,5 +24,8 @@
     <string name="recycler_item_forward_description">Icon to select Topic</string>
     <string name="not_enough_data_message">Not enough data yet! Check back later.</string>
     <string name="check_internet_message">Can\'t connect. Please check your Internet connection!</string>
+    <string name="recycler_chart_election_date_message">Election date:</string>
+    <string name="recycler_chart_poll_count_message">Poll count:</string>
+    <string name="recycler_chart_last_updated_message">Last updated:</string>
 
 </resources>

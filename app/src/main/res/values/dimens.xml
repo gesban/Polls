@@ -18,4 +18,6 @@
     <dimen name="recycler_min_font_size">12sp</dimen>
     <dimen name="recycler_margin_top_view_height">15dp</dimen>
     <dimen name="a_main_recycler_margin">20dp</dimen>
+    <dimen name="recycler_card_padding">10dp</dimen>
+    <dimen name="recycler_min_min_font_size">10sp</dimen>
 </resources>
