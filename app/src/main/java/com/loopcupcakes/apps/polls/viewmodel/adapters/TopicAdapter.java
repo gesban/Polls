@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
-import com.loopcupcakes.apps.polls.viewmodel.tasks.SlugsAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.List;
@@ -42,9 +41,9 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), SlugActivity.class);
-                    intent.putExtra(Constants.SlugKey, subtitle);
+                    intent.putExtra(Constants.SlugSubtitleKey, subtitle);
+                    intent.putExtra(Constants.SlugNameKey, slug);
                     v.getContext().startActivity(intent);
-                    new SlugsAsyncTask().execute(slug);
                 }
             });
         }

@@ -22,6 +22,12 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.SlugAsyncTaskTAG_;
 
+    private SlugVM mSlugVM;
+
+    public SlugsAsyncTask(SlugVM slugVM) {
+        mSlugVM = slugVM;
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -67,5 +73,6 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
             }
         }
         SlugVM.mChartAdapter.notifyDataSetChanged();
+        mSlugVM.finishLoading();
     }
 }
