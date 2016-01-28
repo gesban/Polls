@@ -81,7 +81,7 @@ public class MainVM {
         new_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDrawerLayout.openDrawer(Gravity.LEFT);
+                mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
     }
@@ -95,7 +95,6 @@ public class MainVM {
     }
 
     private void configureActionBar() {
-        // TODO: 1/26/16 Add transparent ActionBar
         Toolbar toolbar = (Toolbar) mMainActivity.findViewById(R.id.a_main_toolbar);
 
         mMainActivity.setSupportActionBar(toolbar);
@@ -121,7 +120,7 @@ public class MainVM {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     default:
-                        Log.d(TAG_, "Item selected");
+                        Log.d(TAG_, "Item selected " + item.getTitle());
                 }
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
