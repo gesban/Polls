@@ -14,7 +14,8 @@ public class Constants {
     public static final String EstimatesTaskTAG_ = "EstimatesTaskTAG_";
     public static final String HistoryFragmentTAG_ = "HistoryFragmentTAG_";
 
-    public static final String SlugKey = "slug_key_intent";
+    public static final String SlugSubtitleKey = "slug_subtitle_key_intent";
+    public static final String SlugNameKey = "slug_name_key_intent";
     public static final String ChartTitleKey = "chart_title_key_intent";
     public static final String ChartItemKey = "char_item_key_intent";
 
