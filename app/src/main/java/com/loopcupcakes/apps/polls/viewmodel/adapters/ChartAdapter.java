@@ -2,6 +2,8 @@ package com.loopcupcakes.apps.polls.viewmodel.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,11 @@ import android.widget.TextView;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.view.fragments.ChartFragment;
+import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
+import com.loopcupcakes.apps.polls.viewmodel.SlugVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.List;
@@ -21,7 +27,6 @@ import java.util.List;
 public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> {
 
     private List<Chart> mCharts;
-    private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewTitle;
@@ -43,10 +48,13 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), DetailsActivity.class);
-                    intent.putExtra(Constants.ChartTitleKey, textViewTitle.getText());
-                    intent.putExtra(Constants.ChartItemKey, chartItem);
-                    v.getContext().startActivity(intent);
+                    SlugActivity slugActivity = (SlugActivity) v.getContext();
+                    ChartFragment chartFragment = ChartFragment.newInstance(chartItem);
+
+                    FragmentTransaction fragmentTransaction = slugActivity.getSupportFragmentManager().beginTransaction();
+                    chartFragment.show(fragmentTransaction, Constants.ChartFragmentKey);
+
+                    DetailsVM.mChart = chartItem;
                 }
             });
         }
@@ -58,7 +66,7 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
+        Context mContext = parent.getContext();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View contactView = inflater.inflate(R.layout.recycler_item_chart, parent, false);

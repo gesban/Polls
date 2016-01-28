@@ -15,6 +15,9 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO: 1/27/16 Make menu show
+        // TODO: 1/27/16 AsyncTask before this starts to retrieve data
+        // TODO: 1/27/16 AsyncTask to fill plot
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 

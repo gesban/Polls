@@ -1,14 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.loopcupcakes.apps.polls.view.fragments.ChartFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/f_chart_recycler"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/f_chart_recycler_margin_bottom"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/f_chart_historic_btn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="bottom|end"
+        android:text="@string/f_chart_historic_button" />
+
+</RelativeLayout>

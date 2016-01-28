@@ -20,6 +20,8 @@ public class Constants {
 
     public static final String BASE_POLLSTER_URL = "http://elections.huffingtonpost.com";
 
+    public static final String ChartFragmentKey = "chart_fragment_key";
+
     public enum FRAGMENT_TYPE{
         LOADING, HOME
     }
