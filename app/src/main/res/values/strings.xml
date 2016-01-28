@@ -28,5 +28,6 @@
     <string name="recycler_chart_poll_count_message">Poll count:</string>
     <string name="recycler_chart_last_updated_message">Last updated:</string>
     <string name="chart_election_date_to_be_determined_message">To be announced.</string>
+    <string name="recycler_chart_icon_description">Expand Chart description</string>
 
 </resources>

@@ -9,14 +9,33 @@
         android:orientation="vertical"
         android:padding="@dimen/recycler_card_padding">
 
-        <TextView
-            android:id="@+id/recycler_chart_state_txt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:gravity="end"
-            android:text="@string/loading_text"
-            android:textSize="@dimen/recycler_min_font_size" />
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/recycler_chart_state_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_font_size" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <ImageView
+                    android:layout_width="@dimen/recycler_card_icon_dims"
+                    android:layout_height="@dimen/recycler_card_icon_dims"
+                    android:layout_gravity="end"
+                    android:tint="@color/colorDarkGray"
+                    android:contentDescription="@string/recycler_chart_icon_description"
+                    android:src="@drawable/ic_expand_more_black_48dp" />
+            </FrameLayout>
+        </LinearLayout>
 
         <!-- TODO Check if set as Single Line -->
         <TextView
@@ -111,20 +130,20 @@
 
             <TextView
                 android:id="@+id/recycler_chart_winner_name_txt"
-                android:text="@string/loading_text"
-                android:textStyle="bold"
-                android:textSize="@dimen/recycler_almostmin_min_font_size"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_almostmin_min_font_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recycler_chart_winner_value_txt"
-                android:text="@string/loading_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/recycler_chart_texts_margin_start"
                 android:layout_marginStart="@dimen/recycler_chart_texts_margin_start"
-                android:textSize="@dimen/recycler_min_min_font_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_min_font_size" />
         </LinearLayout>
 
 
@@ -134,20 +153,20 @@
 
             <TextView
                 android:id="@+id/recycler_chart_loser_name_txt"
-                android:text="@string/loading_text"
-                android:textStyle="bold"
-                android:textSize="@dimen/recycler_almostmin_min_font_size"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_almostmin_min_font_size"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recycler_chart_loser_value_txt"
-                android:text="@string/loading_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/recycler_chart_texts_margin_start"
                 android:layout_marginStart="@dimen/recycler_chart_texts_margin_start"
-                android:textSize="@dimen/recycler_min_min_font_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_min_font_size" />
         </LinearLayout>
 
     </LinearLayout>
