@@ -24,20 +24,28 @@
                 android:text="@string/loading_text"
                 android:textSize="@dimen/recycler_min_font_size" />
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end">
+                android:gravity="end">
 
                 <ImageView
-                    android:layout_width="@dimen/recycler_card_icon_dims"
-                    android:layout_height="@dimen/recycler_card_icon_dims"
+                    android:layout_width="@dimen/recycler_card_icon_large_dims"
+                    android:layout_height="@dimen/recycler_card_icon_large_dims"
                     android:layout_gravity="end"
-                    android:contentDescription="@string/recycler_chart_icon_description"
-                    android:src="@drawable/ic_expand_more_black_48dp"
+                    android:contentDescription="@string/f_details_history_icon"
+                    android:src="@drawable/ic_timeline_black_48dp"
                     android:tint="@color/colorDarkGray" />
 
-            </FrameLayout>
+                <ImageView
+                    android:layout_width="@dimen/recycler_card_icon_large_dims"
+                    android:layout_height="@dimen/recycler_card_icon_large_dims"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/f_details_close_icon"
+                    android:src="@drawable/ic_expand_less_black_48dp"
+                    android:tint="@color/colorDarkGray" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <!-- TODO Check if set as Single Line -->
