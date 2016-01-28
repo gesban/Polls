@@ -11,4 +11,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="f_chart_recycler_margin_bottom">35dp</dimen>
     <dimen name="a_main_progressbar_margin_top">-5dp</dimen>
+    <dimen name="a_main_hamburger_padding">2dp</dimen>
+    <dimen name="a_main_hamburger_margin">10dp</dimen>
+    <dimen name="a_main_hamburger_width">28dp</dimen>
+    <dimen name="a_main_hamburger_height">20dp</dimen>
 </resources>
