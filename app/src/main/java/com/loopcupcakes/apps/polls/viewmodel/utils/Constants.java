@@ -13,6 +13,7 @@ public class Constants {
     public static final String CandidateAdapterTAG_ = "CandidateAdapterTAG_";
     public static final String EstimatesTaskTAG_ = "EstimatesTaskTAG_";
     public static final String HistoryFragmentTAG_ = "HistoryFragmentTAG_";
+    public static final String ChartAdapterTAG_ = "ChartAdapterTAG_";
 
     public static final String SlugSubtitleKey = "slug_subtitle_key_intent";
     public static final String SlugNameKey = "slug_name_key_intent";

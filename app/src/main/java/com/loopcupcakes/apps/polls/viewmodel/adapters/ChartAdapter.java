@@ -3,6 +3,7 @@ package com.loopcupcakes.apps.polls.viewmodel.adapters;
 import android.content.Context;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,18 @@ import com.loopcupcakes.apps.polls.view.fragments.ChartFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by evin on 1/26/16.
  */
 public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> {
 
+    private static final String TAG = Constants.ChartAdapterTAG_;
     private List<Chart> mCharts;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,17 +89,35 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
         textViewTitle.setText(chart.getTitle());
         textViewState.setText(chart.getState());
 
-        String electionDate = chart.getElectionDate();
+        validateIfDateSet(chart.getElectionDate(), textViewDate);
+
+        textViewCount.setText(String.valueOf(chart.getPollCount()));
+
+        String formattedDate = formatDate(chart.getLastUpdated());
+        textViewUpdated.setText(formattedDate);
+
+        holder.chartItem = chart;
+    }
+
+    private void validateIfDateSet(String electionDate, TextView textViewDate) {
         if (electionDate == null || electionDate.length() == 0){
             textViewDate.setText(R.string.chart_election_date_to_be_determined_message);
         }else {
             textViewDate.setText(electionDate);
         }
+    }
 
-        textViewCount.setText(String.valueOf(chart.getPollCount()));
-        textViewUpdated.setText(chart.getLastUpdated());
+    private String formatDate(String lastUpdatedDate) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'", Locale.US);
+        DateFormat dateFormat = DateFormat.getDateTimeInstance();
 
-        holder.chartItem = chart;
+        try {
+            return dateFormat.format(simpleDateFormat.parse(lastUpdatedDate));
+        } catch (ParseException e) {
+            Log.e(TAG, "formatDate: " + e.toString(), e);
+        }
+
+        return lastUpdatedDate;
     }
 
     @Override
