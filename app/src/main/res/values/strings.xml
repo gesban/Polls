@@ -17,12 +17,14 @@
     <string name="a_details_title">Charts</string>
     <string name="a_slug_title">Topics</string>
 
-    <string name="recycler_home_decoration">10</string>
+    <string name="recycler_home_decoration">20</string>
 
     <string name="a_details_current_tab">Current</string>
     <string name="a_details_historical_tab">Historical</string>
     <string name="f_chart_historic_button">Historic</string>
     <string name="a_main_hamburger_description">Hamburger icon</string>
     <string name="nav_header_subtitle">Menu</string>
+    <string name="loading_text">Loading...</string>
+    <string name="recycler_item_forward_description">Icon to select Topic</string>
 
 </resources>

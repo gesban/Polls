@@ -15,4 +15,7 @@
     <dimen name="a_main_hamburger_margin">10dp</dimen>
     <dimen name="a_main_hamburger_width">28dp</dimen>
     <dimen name="a_main_hamburger_height">20dp</dimen>
+    <dimen name="recycler_min_font_size">12sp</dimen>
+    <dimen name="recycler_margin_top_view_height">15dp</dimen>
+    <dimen name="a_main_recycler_margin">20dp</dimen>
 </resources>

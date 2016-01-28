@@ -8,27 +8,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/a_main_hamburger_image"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:tint="@color/colorPrimary"
-            android:padding="@dimen/a_main_hamburger_padding"
-            android:layout_margin="@dimen/a_main_hamburger_margin"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
             android:layout_width="@dimen/a_main_hamburger_width"
             android:layout_height="@dimen/a_main_hamburger_height"
+            android:layout_margin="@dimen/a_main_hamburger_margin"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/a_main_hamburger_description"
-            android:src="@drawable/ic_menu_black_48dp" />
+            android:padding="@dimen/a_main_hamburger_padding"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_menu_black_48dp"
+            android:tint="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="end|center"
             android:layout_gravity="end"
+            android:gravity="end|center"
             android:text="@string/f_home_available_text" />
 
     </LinearLayout>
@@ -36,9 +36,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/a_main_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/a_main_recycler_margin">
 
     </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>
 
 
