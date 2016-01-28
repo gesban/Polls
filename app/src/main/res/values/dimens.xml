@@ -19,6 +19,7 @@
     <dimen name="recycler_margin_top_view_height">15dp</dimen>
     <dimen name="a_main_recycler_margin">20dp</dimen>
     <dimen name="recycler_card_padding">10dp</dimen>
+    <dimen name="recycler_card_small_padding">3dp</dimen>
     <dimen name="recycler_min_min_font_size">10sp</dimen>
     <dimen name="recycler_chart_texts_margin_start">3dp</dimen>
     <dimen name="recycler_item_separator_margin_upsides">5dp</dimen>
@@ -27,5 +28,5 @@
     <dimen name="recycler_item_separator_height">1dp</dimen>
     <dimen name="recycler_almostmin_min_font_size">11sp</dimen>
     <dimen name="recycler_card_icon_dims">10dp</dimen>
-    <dimen name="recycler_card_icon_large_dims">15dp</dimen>
+    <dimen name="recycler_card_icon_large_dims">18dp</dimen>
 </resources>

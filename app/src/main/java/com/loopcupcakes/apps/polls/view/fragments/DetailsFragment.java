@@ -80,7 +80,7 @@ public class DetailsFragment extends DialogFragment {
 
         mChart = getArguments().getParcelable(Constants.ChartItemKey);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.f_details_recycler);
-        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(getResources().getString(R.string.recycler_home_decoration)));
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(getResources().getString(R.string.recycler_home_small_decoration)));
 
         refreshEstimates(mChart);
 

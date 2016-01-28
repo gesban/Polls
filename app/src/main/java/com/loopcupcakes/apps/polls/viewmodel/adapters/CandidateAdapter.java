@@ -78,7 +78,7 @@ public class CandidateAdapter extends RecyclerView.Adapter<CandidateAdapter.View
 
         textViewName.setText(strName);
         textViewParty.setText(estimate.getParty());
-        textViewValue.setText(String.valueOf(estimate.getValue()));
+        textViewValue.setText(String.valueOf(estimate.getValue()) + "%");
         textViewPosition.setText(String.valueOf(position + 1));
     }
 

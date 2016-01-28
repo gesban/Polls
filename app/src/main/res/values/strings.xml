@@ -14,6 +14,7 @@
     <string name="a_slug_title">Topics</string>
 
     <string name="recycler_home_decoration">20</string>
+    <string name="recycler_home_small_decoration">3</string>
 
     <string name="a_details_current_tab">Current</string>
     <string name="a_details_historical_tab">Historical</string>
