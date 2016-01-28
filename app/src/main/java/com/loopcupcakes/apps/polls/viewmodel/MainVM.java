@@ -10,13 +10,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
+import com.loopcupcakes.apps.polls.view.animations.Animator;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
@@ -38,11 +41,13 @@ public class MainVM {
 
     private MainActivity mMainActivity;
     private ParseVM mParseVM;
+    private Animator mAnimator;
 
     private ActionBar mActionBar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
 
     static {
         mTopics = new ArrayList<>();
@@ -52,6 +57,7 @@ public class MainVM {
     public MainVM(MainActivity mainActivity) {
         mMainActivity = mainActivity;
         mParseVM = new ParseVM(mMainActivity);
+        mAnimator = new Animator();
     }
 
     public void initializeThirdPartyLibraries() {
@@ -62,11 +68,22 @@ public class MainVM {
         mDrawerLayout = (DrawerLayout) mMainActivity.findViewById(R.id.a_main_drawer);
         mNavigationView = (NavigationView) mMainActivity.findViewById(R.id.a_main_nav);
         mRecyclerView = (RecyclerView) mMainActivity.findViewById(R.id.a_main_recycler);
-
+        mProgressBar = (ProgressBar) mMainActivity.findViewById(R.id.a_main_progressbar);
 
         configureActionBar();
         retrieveTopics();
         configureRecycler();
+        setupButtons();
+    }
+
+    private void setupButtons() {
+        ImageButton new_home = (ImageButton) mMainActivity.findViewById(R.id.a_main_hamburger_image);
+        new_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
     }
 
     private void configureRecycler() {
@@ -140,6 +157,7 @@ public class MainVM {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null && objects != null && objects.size() > 0) {
                     updateTopics(objects);
+                    hideProgressBar();
                 } else {
                     retrieveTopicsOnline();
                 }
@@ -157,6 +175,7 @@ public class MainVM {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     updateTopics(objects);
+                    hideProgressBar();
                 } else {
                     Snackbar snackbar = Snackbar.make(mDrawerLayout, R.string.main_vm_error_internet, Snackbar.LENGTH_LONG);
                     snackbar.show();
@@ -171,6 +190,10 @@ public class MainVM {
             mTopics.add((Topic) object);
         }
         mTopicAdapter.notifyDataSetChanged();
+    }
+
+    private void hideProgressBar(){
+        mAnimator.fadeOut(mProgressBar, 500);
     }
 
 }
