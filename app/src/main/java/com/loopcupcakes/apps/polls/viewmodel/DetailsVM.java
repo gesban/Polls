@@ -4,20 +4,17 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.RecyclerView;
 
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
-import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate_;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.ViewPagerAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by evin on 1/27/16.
@@ -32,12 +29,12 @@ public class DetailsVM {
     Intent mIntent;
 
     public static ArrayList<Estimate> mEstimates;
-    public static ArrayList<EstimatesByDate> mEstimatesByDates;
+    public static ArrayList<EstimatesByDate> mEstimatesByDate;
     public static CandidateAdapter mCandidateAdapter;
 
     static {
         mEstimates = new ArrayList<>();
-        mEstimatesByDates = new ArrayList<>();
+        mEstimatesByDate = new ArrayList<>();
         mCandidateAdapter = new CandidateAdapter(mEstimates);
     }
 

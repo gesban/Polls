@@ -58,9 +58,14 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
 
     @Override
     protected void onPostExecute(List<Chart> charts) {
+        // TODO: 1/27/16 Improve not enough data validation
         super.onPostExecute(charts);
 
-        SlugVM.mCharts.addAll(charts);
+        for (Chart chart : charts){
+            if (chart.getPollCount() > 6){
+                SlugVM.mCharts.add(chart);
+            }
+        }
         SlugVM.mChartAdapter.notifyDataSetChanged();
     }
 }

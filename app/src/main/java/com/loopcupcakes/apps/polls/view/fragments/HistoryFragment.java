@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
 
 import java.util.ArrayList;
 
@@ -70,6 +71,9 @@ public class HistoryFragment extends Fragment {
 
         LineData data = new LineData(xVals, dataSets);
         lineChart.setData(data);
+        lineChart.setDrawGridBackground(false);
+        lineChart.setDescription("");
+        lineChart.setDrawBorders(false);
         lineChart.invalidate(); // refresh
     }
 }

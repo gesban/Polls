@@ -5,12 +5,10 @@ import android.util.Log;
 
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
-import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -26,7 +24,7 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        DetailsVM.mEstimatesByDates.clear();
+        DetailsVM.mEstimatesByDate.clear();
     }
 
     @Override
@@ -59,7 +57,6 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
     @Override
     protected void onPostExecute(Chart chart) {
         super.onPostExecute(chart);
-        Log.d(TAG, "onPostExecute: " + chart.getEstimatesByDate().size());
-//        DetailsVM.mEstimates_.addAll();
+        DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
     }
 }
