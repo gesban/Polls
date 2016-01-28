@@ -11,7 +11,7 @@ public class SlugActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO: 1/26/16 Add ProgressBar when searching
+        // TODO: 1/28/16 Fix dates timezone
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slug);
 

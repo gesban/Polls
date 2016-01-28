@@ -28,5 +28,6 @@
     <dimen name="recycler_item_separator_height">1dp</dimen>
     <dimen name="recycler_almostmin_min_font_size">11sp</dimen>
     <dimen name="recycler_card_icon_dims">10dp</dimen>
-    <dimen name="recycler_card_icon_large_dims">18dp</dimen>
+    <dimen name="recycler_card_icon_large_dims">20dp</dimen>
+    <dimen name="f_details_provided_margin">5dp</dimen>
 </resources>

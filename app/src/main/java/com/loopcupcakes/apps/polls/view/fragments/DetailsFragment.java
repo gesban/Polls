@@ -2,6 +2,7 @@ package com.loopcupcakes.apps.polls.view.fragments;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
@@ -89,6 +92,15 @@ public class DetailsFragment extends DialogFragment {
         recyclerView.addItemDecoration(spacesItemDecoration);
 
         updateTextViews(view);
+
+        ImageView imageView = (ImageView) view.findViewById(R.id.f_details_timeline_btn);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
     }
 

@@ -1,5 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/f_details_coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,12 +26,13 @@
                 android:text="@string/loading_text"
                 android:textSize="@dimen/recycler_min_font_size" />
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end">
 
                 <ImageView
+                    android:id="@+id/f_details_timeline_btn"
                     android:layout_width="@dimen/recycler_card_icon_large_dims"
                     android:layout_height="@dimen/recycler_card_icon_large_dims"
                     android:layout_gravity="end"
@@ -37,15 +40,7 @@
                     android:src="@drawable/ic_timeline_black_48dp"
                     android:tint="@color/colorDarkGray" />
 
-                <ImageView
-                    android:layout_width="@dimen/recycler_card_icon_large_dims"
-                    android:layout_height="@dimen/recycler_card_icon_large_dims"
-                    android:layout_gravity="end"
-                    android:contentDescription="@string/f_details_close_icon"
-                    android:src="@drawable/ic_expand_less_black_48dp"
-                    android:tint="@color/colorDarkGray" />
-
-            </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
 
         <!-- TODO Check if set as Single Line -->
@@ -142,16 +137,16 @@
 
         </android.support.v7.widget.RecyclerView>
 
-        <!--<Button-->
-        <!--android:id="@+id/f_chart_historic_btn"-->
-        <!--style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:gravity="bottom|end"-->
-        <!--android:text="@string/f_chart_historic_button" />-->
-
     </LinearLayout>
-</LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/f_details_provided_margin"
+        android:gravity="end"
+        android:text="@string/f_details_provided_pollster_message"
+        android:textSize="@dimen/recycler_min_min_font_size"
+        app:layout_anchor="@id/f_details_coordinator"
+        app:layout_anchorGravity="bottom|right|end" />
+
+</android.support.design.widget.CoordinatorLayout>
