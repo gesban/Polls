@@ -1,6 +1,7 @@
 package com.loopcupcakes.apps.polls.view.fragments;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -11,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
+import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.ArrayList;
@@ -23,26 +26,28 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChartFragment extends DialogFragment {
+public class DetailsFragment extends DialogFragment {
 
     private static CandidateAdapter mCandidateAdapter;
     private static ArrayList<Estimate> mEstimates;
+
+    private Chart mChart;
 
     static {
         mEstimates = new ArrayList<>();
         mCandidateAdapter = new CandidateAdapter(mEstimates);
     }
 
-    public ChartFragment() {
+    public DetailsFragment() {
         // Required empty public constructor
     }
 
-    public static ChartFragment newInstance(Chart chart) {
+    public static DetailsFragment newInstance(Chart chart) {
 
         Bundle args = new Bundle();
         args.putParcelable(Constants.ChartItemKey, chart);
 
-        ChartFragment fragment = new ChartFragment();
+        DetailsFragment fragment = new DetailsFragment();
         fragment.setArguments(args);
 
         return fragment;
@@ -52,7 +57,7 @@ public class ChartFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chart, container, false);
+        return inflater.inflate(R.layout.fragment_details, container, false);
     }
 
     @Override
@@ -72,13 +77,28 @@ public class ChartFragment extends DialogFragment {
 
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        Chart chart = getArguments().getParcelable(Constants.ChartItemKey);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.f_chart_recycler);
+        mChart = getArguments().getParcelable(Constants.ChartItemKey);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.f_details_recycler);
+        SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(getResources().getString(R.string.recycler_home_decoration)));
 
-        refreshEstimates(chart);
+        refreshEstimates(mChart);
 
         recyclerView.setAdapter(mCandidateAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.addItemDecoration(spacesItemDecoration);
+
+        updateTextViews(view);
+
+    }
+
+    private void updateTextViews(View view) {
+        Activity activity = getActivity();
+        if (activity == null){
+            return;
+        }
+
+        TextView textViewTitle = (TextView) view.findViewById(R.id.f_details_title_txt);
+        textViewTitle.setText(mChart.getTitle());
     }
 
     private void refreshEstimates(Chart chart) {

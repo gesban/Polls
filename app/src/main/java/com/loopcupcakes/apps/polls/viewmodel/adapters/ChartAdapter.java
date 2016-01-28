@@ -13,7 +13,7 @@ import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
-import com.loopcupcakes.apps.polls.view.fragments.ChartFragment;
+import com.loopcupcakes.apps.polls.view.fragments.DetailsFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
@@ -62,10 +62,10 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
                 @Override
                 public void onClick(View v) {
                     SlugActivity slugActivity = (SlugActivity) v.getContext();
-                    ChartFragment chartFragment = ChartFragment.newInstance(chartItem);
+                    DetailsFragment detailsFragment = DetailsFragment.newInstance(chartItem);
 
                     FragmentTransaction fragmentTransaction = slugActivity.getSupportFragmentManager().beginTransaction();
-                    chartFragment.show(fragmentTransaction, Constants.ChartFragmentKey);
+                    detailsFragment.show(fragmentTransaction, Constants.ChartFragmentKey);
 
                     DetailsVM.mChart = chartItem;
                 }

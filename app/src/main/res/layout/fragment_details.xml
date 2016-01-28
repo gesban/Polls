@@ -1,0 +1,150 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.fragments.DetailsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/recycler_card_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/f_details_state_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_font_size" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <ImageView
+                    android:layout_width="@dimen/recycler_card_icon_dims"
+                    android:layout_height="@dimen/recycler_card_icon_dims"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/recycler_chart_icon_description"
+                    android:src="@drawable/ic_expand_more_black_48dp"
+                    android:tint="@color/colorDarkGray" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- TODO Check if set as Single Line -->
+        <TextView
+            android:id="@+id/f_details_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_text"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recycler_item_separator_height"
+            android:layout_marginBottom="@dimen/recycler_item_separator_margin_upsides"
+            android:layout_marginTop="@dimen/recycler_item_separator_margin_upsides"
+            android:background="@color/colorLightGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/f_details_election_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recycler_chart_election_date_message"
+                android:textSize="@dimen/recycler_min_min_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/f_details_date_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/recycler_chart_texts_margin_start"
+                android:layout_marginStart="@dimen/recycler_chart_texts_margin_start"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_min_font_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recycler_chart_poll_count_message"
+                android:textSize="@dimen/recycler_min_min_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/f_details_count_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/recycler_chart_texts_margin_start"
+                android:layout_marginStart="@dimen/recycler_chart_texts_margin_start"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_min_font_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recycler_chart_last_updated_message"
+                android:textSize="@dimen/recycler_min_min_font_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/f_details_updated_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/recycler_chart_texts_margin_start"
+                android:layout_marginStart="@dimen/recycler_chart_texts_margin_start"
+                android:text="@string/loading_text"
+                android:textSize="@dimen/recycler_min_min_font_size" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recycler_item_separator_height"
+            android:layout_marginBottom="@dimen/recycler_item_separator_margin_upsides"
+            android:layout_marginTop="@dimen/recycler_item_separator_margin_upsides"
+            android:background="@color/colorLightGray" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/f_details_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/a_main_recycler_margin">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <!--<Button-->
+        <!--android:id="@+id/f_chart_historic_btn"-->
+        <!--style="@style/Widget.AppCompat.Button.Borderless.Colored"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:gravity="bottom|end"-->
+        <!--android:text="@string/f_chart_historic_button" />-->
+
+    </LinearLayout>
+</LinearLayout>

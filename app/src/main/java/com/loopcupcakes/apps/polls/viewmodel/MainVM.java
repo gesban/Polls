@@ -146,7 +146,6 @@ public class MainVM {
 
     private void retrieveTopics() {
         // TODO: 1/26/16 Update loading TextView if no connection
-        // TODO: 1/26/16 Query local datastore first
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.fromLocalDatastore();
