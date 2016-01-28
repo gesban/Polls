@@ -82,7 +82,14 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
 
         textViewTitle.setText(chart.getTitle());
         textViewState.setText(chart.getState());
-        textViewDate.setText(chart.getElectionDate());
+
+        String electionDate = chart.getElectionDate();
+        if (electionDate == null || electionDate.length() == 0){
+            textViewDate.setText(R.string.chart_election_date_to_be_determined_message);
+        }else {
+            textViewDate.setText(electionDate);
+        }
+
         textViewCount.setText(String.valueOf(chart.getPollCount()));
         textViewUpdated.setText(chart.getLastUpdated());
 

@@ -36,6 +36,11 @@
             </FrameLayout>
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recycler_item_separator_height"
+            android:layout_marginBottom="@dimen/recycler_item_separator_margin_upsides_bottom"
+            android:background="@color/colorLightGray" />
 
         <LinearLayout
             android:layout_width="match_parent"
