@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
-import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.List;

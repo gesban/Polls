@@ -1,17 +1,13 @@
 package com.loopcupcakes.apps.polls.view.fragments;
 
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -26,7 +22,6 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,15 +49,6 @@ public class HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mLineChart = (LineChart) view.findViewById(R.id.f_history_chart);
         new EstimatesAsyncTask(this).execute(DetailsVM.mChart.getSlug());
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser) {
-            Activity a = getActivity();
-            if(a != null) a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
     }
 
     public void buildChart(){
