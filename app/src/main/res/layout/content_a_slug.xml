@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="start">
 
         <ImageButton
             android:id="@+id/a_slug_hamburger_image"
@@ -21,10 +21,11 @@
             android:contentDescription="@string/a_main_hamburger_description"
             android:padding="@dimen/a_main_hamburger_padding"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_menu_black_48dp"
+            android:src="@drawable/ic_arrow_back_black_48dp"
             android:tint="@color/colorPrimary" />
 
         <TextView
+            android:id="@+id/a_slug_title_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"

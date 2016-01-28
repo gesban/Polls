@@ -175,7 +175,7 @@ public class MainVM {
                     updateTopics(objects);
                     hideProgressBar();
                 } else {
-                    Snackbar snackbar = Snackbar.make(mDrawerLayout, R.string.main_vm_error_internet, Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(mDrawerLayout, mMainActivity.getString(R.string.check_internet_message), Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }

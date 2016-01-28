@@ -6,7 +6,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.SlugActivity;
@@ -35,6 +38,8 @@ public class SlugVM {
     private ActionBar mActionBar;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    private TextView mTextViewTitle;
+    private ImageButton mBackButton;
 
     static {
         mCharts = new ArrayList<>();
@@ -49,9 +54,21 @@ public class SlugVM {
     public void initializeLayouts() {
         mRecyclerView = (RecyclerView) mSlugActivity.findViewById(R.id.a_slug_recycler);
         mProgressBar = (ProgressBar) mSlugActivity.findViewById(R.id.a_slug_progressbar);
+        mTextViewTitle = (TextView) mSlugActivity.findViewById(R.id.a_slug_title_text);
+        mBackButton = (ImageButton) mSlugActivity.findViewById(R.id.a_slug_hamburger_image);
 
         configureActionBar();
         configureRecyclerView();
+        setupButtons();
+    }
+
+    private void setupButtons() {
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSlugActivity.onBackPressed();
+            }
+        });
     }
 
     private void configureRecyclerView() {
@@ -79,7 +96,10 @@ public class SlugVM {
         }
 
         if (intent.hasExtra(Constants.SlugSubtitleKey)){
-            mActionBar.setSubtitle(intent.getStringExtra(Constants.SlugSubtitleKey));
+            final String stringExtra = intent.getStringExtra(Constants.SlugSubtitleKey);
+
+            mActionBar.setSubtitle(stringExtra);
+            mTextViewTitle.setText(stringExtra);
         }
 
         if (intent.hasExtra(Constants.SlugNameKey)){
@@ -91,11 +111,16 @@ public class SlugVM {
         new SlugsAsyncTask(this).execute(slug);
     }
 
-    public void finishLoading(){
-        hideProgressBar();
+    public void finishLoading(boolean status){
+        if (status){
+            hideProgressBar();
 
-        if (mChartAdapter.getItemCount() < 1){
-            Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.a_slug_not_enough_data_message), Snackbar.LENGTH_LONG);
+            if (mChartAdapter.getItemCount() < 1){
+                Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.not_enough_data_message), Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+        }else {
+            Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.check_internet_message), Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

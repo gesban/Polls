@@ -10,10 +10,6 @@
 
     <string name="f_home_available_text">Topics available</string>
 
-
-    <string name="main_vm_error_internet">Can\'t download the main topics. Please check your Internet Connection</string>
-
-
     <string name="a_details_title">Charts</string>
     <string name="a_slug_title">Topics</string>
 
@@ -24,8 +20,9 @@
     <string name="f_chart_historic_button">Historic</string>
     <string name="a_main_hamburger_description">Hamburger icon</string>
     <string name="nav_header_subtitle">Menu</string>
-    <string name="loading_text">Loading...</string>
+    <string name="loading_text">Loading&#8230;</string>
     <string name="recycler_item_forward_description">Icon to select Topic</string>
-    <string name="a_slug_not_enough_data_message">Not enough data yet! Check back later.</string>
+    <string name="not_enough_data_message">Not enough data yet! Check back later.</string>
+    <string name="check_internet_message">Can\'t connect. Please check your Internet connection!</string>
 
 </resources>

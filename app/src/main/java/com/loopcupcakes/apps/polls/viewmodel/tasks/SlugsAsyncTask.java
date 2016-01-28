@@ -56,7 +56,7 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
         try {
             charts = call.execute().body();
         } catch (IOException e) {
-            Log.e(TAG, "doInBackground: ", e);
+            Log.e(TAG, "doInBackground: " + e.toString(), e);
         }
 
         return charts;
@@ -67,12 +67,16 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
         // TODO: 1/27/16 Improve not enough data validation
         super.onPostExecute(charts);
 
-        for (Chart chart : charts){
-            if (chart.getPollCount() > 6){
-                SlugVM.mCharts.add(chart);
+        if (charts != null){
+            for (Chart chart : charts){
+                if (chart.getPollCount() > 6){
+                    SlugVM.mCharts.add(chart);
+                }
             }
+            SlugVM.mChartAdapter.notifyDataSetChanged();
+            mSlugVM.finishLoading(true);
         }
-        SlugVM.mChartAdapter.notifyDataSetChanged();
-        mSlugVM.finishLoading();
+        mSlugVM.finishLoading(false);
+
     }
 }
