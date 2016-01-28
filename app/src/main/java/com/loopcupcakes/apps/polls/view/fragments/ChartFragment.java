@@ -15,7 +15,6 @@ import android.view.Window;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
-import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 

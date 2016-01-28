@@ -13,7 +13,6 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate_;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
-import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
