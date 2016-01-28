@@ -76,7 +76,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         textViewYear.setText(String.valueOf(topic.getYear()));
 
         holder.slug = topic.getName();
-        holder.subtitle = topic.getYear() + " " + topic.getDescription() + " " + topic.getDelimiter();
+        holder.subtitle = topic.getDescription() + " " + topic.getYear() + ". " + topic.getDelimiter();
     }
 
     @Override
