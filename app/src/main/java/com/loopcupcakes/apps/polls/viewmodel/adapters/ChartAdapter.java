@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.List;
@@ -44,11 +45,11 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("TAG", "onClick: " + v.toString());
                     Intent intent = new Intent(v.getContext(), DetailsActivity.class);
                     intent.putExtra(Constants.ChartTitleKey, textViewTitle.getText());
                     intent.putExtra(Constants.ChartItemKey, chartItem);
                     v.getContext().startActivity(intent);
+                    new EstimatesAsyncTask().execute(chartItem.getSlug());
                 }
             });
         }

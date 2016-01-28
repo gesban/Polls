@@ -9,8 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate_;
+import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
+import com.loopcupcakes.apps.polls.viewmodel.adapters.CandidateAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.ViewPagerAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by evin on 1/27/16.
@@ -22,9 +29,17 @@ public class DetailsVM {
     ViewPager mViewPager;
     ViewPagerAdapter mViewPagerAdapter;
     TabLayout mTabLayout;
-    RecyclerView mRecyclerView;
     Intent mIntent;
-    Chart mChart;
+
+    public static ArrayList<Estimate> mEstimates;
+    public static ArrayList<EstimatesByDate> mEstimatesByDates;
+    public static CandidateAdapter mCandidateAdapter;
+
+    static {
+        mEstimates = new ArrayList<>();
+        mEstimatesByDates = new ArrayList<>();
+        mCandidateAdapter = new CandidateAdapter(mEstimates);
+    }
 
     public DetailsVM(DetailsActivity detailsActivity){
         mDetailsActivity = detailsActivity;
@@ -35,6 +50,17 @@ public class DetailsVM {
         configureActionBar();
         configureTabBar();
         configurePager();
+        readEstimates();
+    }
+
+    private void readEstimates() {
+        if (mIntent.hasExtra(Constants.ChartItemKey)){
+            Chart aux = mIntent.getParcelableExtra(Constants.ChartItemKey);
+
+            mEstimates.clear();
+            mEstimates.addAll(aux.getEstimates());
+            mCandidateAdapter.notifyDataSetChanged();
+        }
     }
 
     private void configurePager() {

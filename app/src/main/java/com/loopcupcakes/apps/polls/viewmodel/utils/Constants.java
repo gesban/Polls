@@ -10,6 +10,8 @@ public class Constants {
     public static final String SlugAsyncTaskTAG_ = "SlugAsyncTaskTag_";
     public static final String DetailsVMTAG_ = "DetailsVMTAG_";
     public static final String DetailsActivityTAG_ = "DetailsActivityTAG_";
+    public static final String CandidateAdapterTAG_ = "CandidateAdapterTAG_";
+    public static final String EstimatesTaskTAG_ = "EstimatesTaskTAG_";
 
     public static final String SlugKey = "slug_key_intent";
     public static final String ChartTitleKey = "chart_title_key_intent";
