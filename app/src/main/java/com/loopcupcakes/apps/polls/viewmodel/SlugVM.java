@@ -83,8 +83,12 @@ public class SlugVM {
         }
 
         if (intent.hasExtra(Constants.SlugNameKey)){
-            new SlugsAsyncTask(this).execute(intent.getStringExtra(Constants.SlugNameKey));
+            retrieveData(intent.getStringExtra(Constants.SlugNameKey));
         }
+    }
+
+    private void retrieveData(String slug) {
+        new SlugsAsyncTask(this).execute(slug);
     }
 
     public void finishLoading(){

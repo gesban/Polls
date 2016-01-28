@@ -44,7 +44,14 @@ public class DetailsVM {
     public void initializeLayout() {
         mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
 
-        new EstimatesAsyncTask(this).execute(mChart.getSlug());
+        if (mChart != null){
+            final String slug = mChart.getSlug();
+            retrieveData(slug);
+        }
+    }
+
+    private void retrieveData(String slug) {
+        new EstimatesAsyncTask(this).execute(slug);
     }
 
     public void buildChart() {
