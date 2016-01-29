@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mMainVM = null;
+        mDrawerToggle = null;
         try {
             unregisterReceiver(mConnectivityReceiver);
         } catch (Exception e) {
