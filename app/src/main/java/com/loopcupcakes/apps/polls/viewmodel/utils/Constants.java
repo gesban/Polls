@@ -24,7 +24,7 @@ public class Constants {
 
     public static final String ParseDateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'";
     public static final String CustomDateFormat = "yyyy'-'MM'-'dd";
-    public static final String ConvertToDateFormat = "MM'-'yy";
+    public static final String ConvertToDateFormat = "MMM' 'yy";
 
     public static final String BASE_POLLSTER_URL = "http://elections.huffingtonpost.com";
 

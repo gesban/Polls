@@ -59,7 +59,7 @@ public class DetailsVM {
         mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
 
         mLineChart.setDrawGridBackground(false);
-        mLineChart.setDescription("");
+        mLineChart.setDescription(mChart.getShortTitle());
         mLineChart.setDrawBorders(false);
 
         mLineChart.getAxisLeft().setDrawAxisLine(false);
