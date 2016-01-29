@@ -16,6 +16,8 @@ public class Constants {
     public static final String ChartAdapterTAG_ = "ChartAdapterTAG_";
     public static final String DetailsFragmentTAG_ = "DetailsFragmentTAG_";
     public static final String ConnectivityReceiverTAG_ = "ConReceiverTAG_";
+    public static final String UpdateDataServiceTAG_ = "UpdateDataServiceTAG_";
+    public static final String MainActivityTAG_ = "MainActivityTAG_";
 
     public static final String SlugSubtitleKey = "slug_subtitle_key_intent";
     public static final String SlugNameKey = "slug_name_key_intent";

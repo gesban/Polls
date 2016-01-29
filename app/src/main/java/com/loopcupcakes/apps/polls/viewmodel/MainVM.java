@@ -1,5 +1,8 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -22,6 +25,8 @@ import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
 import com.loopcupcakes.apps.polls.view.animations.Animator;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
+import com.loopcupcakes.apps.polls.viewmodel.receivers.ConnectivityReceiver;
+import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
 import com.parse.FindCallback;
@@ -196,14 +201,17 @@ public class MainVM {
     }
 
     public void initializeUpdater() {
+        mMainActivity.mConnectivityReceiver = new ConnectivityReceiver();
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (NetworkMagic.isOnline(mMainActivity)){
-                    Log.d(TAG, "run: yes");
+                    Intent intentService = new Intent(mMainActivity, UpdateDataService.class);
+                    mMainActivity.startService(intentService);
                 }else {
-                    Log.d(TAG, "run: nain");
+                    mMainActivity.registerReceiver(mMainActivity.mConnectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
                 }
             }
         }, Constants.HandlerDelayInt);

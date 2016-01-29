@@ -35,10 +35,17 @@
             android:theme="@style/AppTheme">
 
         </activity>
+
+        <service
+            android:name=".viewmodel.services.UpdateDataService"
+            android:exported="false">
+
+        </service>
         <receiver
             android:name=".viewmodel.receivers.ConnectivityReceiver"
             android:enabled="true"
             android:exported="false">
+
         </receiver>
 
         <meta-data
@@ -47,7 +54,6 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="" />
-
 
     </application>
 

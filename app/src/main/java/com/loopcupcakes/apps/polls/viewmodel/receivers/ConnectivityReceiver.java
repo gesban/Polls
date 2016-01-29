@@ -3,10 +3,9 @@ package com.loopcupcakes.apps.polls.viewmodel.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
 
@@ -23,5 +22,10 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: " + new Date());
         Log.d(TAG, "onReceive: " + NetworkMagic.isOnline(context));
+
+        if (NetworkMagic.isOnline(context) && !hasRun){
+            Intent intentService = new Intent(context, UpdateDataService.class);
+            context.startService(intentService);
+        }
     }
 }
