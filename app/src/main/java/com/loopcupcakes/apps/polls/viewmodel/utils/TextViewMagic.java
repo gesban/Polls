@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by evin on 1/28/16.
@@ -28,6 +29,7 @@ public class TextViewMagic {
 
     public static void formatDate(String lastUpdatedDate, TextView textViewUpdated) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.ParseDateFormat, Locale.US);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         DateFormat dateFormat = DateFormat.getDateTimeInstance();
         String result;
 
