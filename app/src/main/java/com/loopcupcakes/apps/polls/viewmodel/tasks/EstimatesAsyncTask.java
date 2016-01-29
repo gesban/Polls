@@ -52,7 +52,7 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
 
         try{
             chart = call.execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Log.e(TAG, "doInBackground: ", e);
         }
 
@@ -62,7 +62,10 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
     @Override
     protected void onPostExecute(Chart chart) {
         super.onPostExecute(chart);
-        DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
-        mDetailsVM.buildChart();
+
+        if (chart != null){
+            DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
+            mDetailsVM.buildChart();
+        }
     }
 }
