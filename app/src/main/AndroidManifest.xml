@@ -23,26 +23,34 @@
         <activity
             android:name=".SlugActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
 
         </activity>
         <activity
             android:name=".DetailsActivity"
             android:launchMode="singleTop"
+            android:parentActivityName=".SlugActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".SlugActivity">
+            android:theme="@style/AppTheme">
 
         </activity>
+        <receiver
+            android:name=".viewmodel.receivers.ConnectivityReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
-        <!-- Put parse keys here -->
         <meta-data
             android:name="com.parse.APPLICATION_ID"
             android:value="" />
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="" />
+
 
     </application>
 
