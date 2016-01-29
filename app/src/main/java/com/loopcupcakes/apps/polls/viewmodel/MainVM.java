@@ -1,11 +1,15 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -23,6 +27,7 @@ import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
 import com.loopcupcakes.apps.polls.view.animations.Animator;
+import com.loopcupcakes.apps.polls.view.fragments.AboutFragment;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.receivers.ConnectivityReceiver;
@@ -125,6 +130,15 @@ public class MainVM {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        Log.d(TAG, "onNavigationItemSelected: Home");
+                        break;
+                    case R.id.nav_about:
+                        showAbout();
+                        break;
+                    case R.id.nav_rate:
+                        rateApp();
+                        break;
                     default:
                         Log.d(TAG, "Item selected " + item.getTitle());
                 }
@@ -133,6 +147,30 @@ public class MainVM {
                 return true;
             }
         };
+    }
+
+    private void rateApp() {
+        Uri uri = Uri.parse("market://details?id=" + mMainActivity.getBaseContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        } else {
+            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        }
+
+        try {
+            mMainActivity.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            mMainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + mMainActivity.getBaseContext().getPackageName())));
+        }
+    }
+
+    private void showAbout() {
+        AboutFragment aboutFragment = new AboutFragment();
+        FragmentManager fragmentManager = mMainActivity.getSupportFragmentManager();
+
+        aboutFragment.show(fragmentManager, Constants.AboutFragmentKey);
     }
 
     private ActionBarDrawerToggle getActionBarDrawerToggle() {

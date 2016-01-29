@@ -1,4 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- TODO Change icon colors depending on technology-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:icon="@drawable/ic_home_black_48dp"
+            android:title="@string/nav_home" />
+
+        <!--<item-->
+        <!--android:id="@+id/nav_technology"-->
+        <!--android:icon="@drawable/ic_android_black_48dp"-->
+        <!--android:title="@string/nav_change_technology" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/nav_history"-->
+            <!--android:icon="@drawable/ic_history_black_48dp"-->
+            <!--android:title="@string/nav_history" />-->
+    </group>
+
+    <item android:title="@string/app_name">
+        <menu>
+            <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_rate_review_black_48dp"
+                android:title="@string/nav_rate" />
+
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_airline_seat_flat_black_48dp"
+                android:title="@string/nav_about" />
+
+            <!--<item-->
+                <!--android:id="@+id/nav_logout"-->
+                <!--android:icon="@drawable/ic_exit_to_app_black_48dp"-->
+                <!--android:title="@string/nav_logout" />-->
+        </menu>
+    </item>
 
 </menu>

@@ -23,7 +23,9 @@ public class Constants {
     public static final String SlugNameKey = "slug_name_key_intent";
     public static final String ChartTitleKey = "chart_title_key_intent";
     public static final String ChartItemKey = "char_item_key_intent";
+
     public static final String ChartFragmentKey = "chart_fragment_key";
+    public static final String AboutFragmentKey = "about_fragment_key";
 
     public static final String ParseDateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'";
     public static final String CustomDateFormat = "yyyy'-'MM'-'dd";

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 Check if Internet connection available
     // TODO: 1/28/16 Fix landscape
     // TODO: 1/28/16 Add image to topics
+    // TODO: 1/29/16 Add watch an ad support
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;

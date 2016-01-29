@@ -36,5 +36,11 @@
     <string name="f_details_provided_pollster_message">Data provided by HuffPost Pollster</string>
     <string name="f_details_expand_less_icon">Go back to available charts</string>
     <string name="f_details_historical_btn">Historical</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_about">About</string>
+    <string name="nav_rate">Rate app</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
