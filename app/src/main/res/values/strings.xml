@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Polls</string>
+    <string name="app_name_exclamation">Polls 2016!</string>
 
     <string name="drawer_open">Opening</string>
     <string name="drawer_close">Closing</string>
@@ -8,7 +9,7 @@
 
     <string name="f_loading_loading_text">Loading polls&#8230;</string>
 
-    <string name="f_home_available_text">Topics available</string>
+    <string name="f_home_available_text">Polls available.</string>
 
     <string name="a_details_title">Charts</string>
     <string name="a_slug_title">Topics</string>
@@ -34,5 +35,6 @@
     <string name="f_details_close_icon">Close details</string>
     <string name="f_details_provided_pollster_message">Data provided by HuffPost Pollster</string>
     <string name="f_details_expand_less_icon">Go back to available charts</string>
+    <string name="f_details_historical_btn">Historical</string>
 
 </resources>
