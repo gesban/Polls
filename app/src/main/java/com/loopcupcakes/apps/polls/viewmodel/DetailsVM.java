@@ -1,12 +1,14 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
@@ -57,6 +59,7 @@ public class DetailsVM {
     public void buildChart() {
         HashMap<String, ArrayList<Entry>> hashMapArrayList = new HashMap<>();
         ArrayList<String> datesArrayList = new ArrayList<>();
+
         int i = 0;
 
         for (Estimate estimate : DetailsVM.mChart.getEstimates()){
@@ -77,16 +80,42 @@ public class DetailsVM {
         }
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
 
+//        Collections.reverse(datesArrayList);
+
+        Log.d(TAG, "buildChart: " + ColorTemplate.COLORFUL_COLORS.length);
+        Log.d(TAG, "buildChart: " + ColorTemplate.VORDIPLOM_COLORS.length);
+        Log.d(TAG, "buildChart: " + ColorTemplate.JOYFUL_COLORS.length);
+        Log.d(TAG, "buildChart: " + ColorTemplate.LIBERTY_COLORS.length);
+        Log.d(TAG, "buildChart: " + ColorTemplate.PASTEL_COLORS.length);
+
+        i = 0;
         for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
             LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
+            setComp.disableDashedLine();
+            setComp.setDrawCircles(false);
+            setComp.setLineWidth(4.5f);
+            setComp.setColor(ColorTemplate.COLORFUL_COLORS[i++]);
             dataSets.add(setComp);
+            if (i > 4)
+                break;
+//            dataSets.Col
         }
 
         LineData data = new LineData(datesArrayList, dataSets);
         mLineChart.setData(data);
+
         mLineChart.setDrawGridBackground(false);
         mLineChart.setDescription("");
         mLineChart.setDrawBorders(false);
+
+        mLineChart.getAxisLeft().setDrawAxisLine(false);
+        mLineChart.getAxisLeft().setDrawGridLines(false);
+        mLineChart.getAxisRight().setDrawAxisLine(false);
+        mLineChart.getAxisRight().setDrawGridLines(false);
+        mLineChart.getXAxis().setDrawAxisLine(false);
+        mLineChart.getXAxis().setDrawGridLines(false);
+
+
         mLineChart.invalidate();
     }
 }

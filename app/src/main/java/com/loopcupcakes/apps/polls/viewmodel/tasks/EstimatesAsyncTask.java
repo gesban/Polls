@@ -8,8 +8,6 @@ import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
-import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
