@@ -2,9 +2,20 @@ package com.loopcupcakes.apps.polls.viewmodel.services;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
+import com.loopcupcakes.apps.polls.R;
+import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
+import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,6 +34,26 @@ public class UpdateDataService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(TAG, "onHandleIntent: Entered");
+        retrieveTopicsOnline();
+    }
+
+    private void retrieveTopicsOnline() {
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
+        query.orderByAscending("priority");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                ArrayList<Topic> topics = new ArrayList<Topic>();
+                if (e == null) {
+                    for (ParseObject object : objects) {
+                        object.pinInBackground();
+                        topics.add((Topic) object);
+                    }
+                    MainVM.mTopics.clear();
+                    MainVM.mTopics.addAll(topics);
+                    MainVM.mTopicAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 }

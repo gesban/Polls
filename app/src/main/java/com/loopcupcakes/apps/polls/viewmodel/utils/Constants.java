@@ -33,5 +33,5 @@ public class Constants {
 
     public static final float LineWidthChart = 2.5f;
 
-    public static final long HandlerDelayInt = 1000;
+    public static final long HandlerDelayInt = 10000;
 }

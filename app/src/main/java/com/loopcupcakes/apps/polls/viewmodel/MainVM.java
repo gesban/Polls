@@ -170,7 +170,6 @@ public class MainVM {
     }
 
     private void retrieveTopicsOnline() {
-        // TODO: 1/26/16 Update localstore on connection
         // TODO: 1/28/16 Fix SnackBar parent
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");

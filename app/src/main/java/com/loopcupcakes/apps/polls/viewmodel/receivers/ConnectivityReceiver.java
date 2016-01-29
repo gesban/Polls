@@ -20,9 +20,6 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "onReceive: " + new Date());
-        Log.d(TAG, "onReceive: " + NetworkMagic.isOnline(context));
-
         if (NetworkMagic.isOnline(context) && !hasRun){
             Intent intentService = new Intent(context, UpdateDataService.class);
             context.startService(intentService);
