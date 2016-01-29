@@ -1,7 +1,6 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
-import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -9,7 +8,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.loopcupcakes.apps.polls.DetailsActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
@@ -19,6 +17,7 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.ColorMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.xAxisFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +68,7 @@ public class DetailsVM {
         mLineChart.getAxisRight().setDrawGridLines(false);
         mLineChart.getXAxis().setDrawAxisLine(false);
         mLineChart.getXAxis().setDrawGridLines(false);
+        mLineChart.getXAxis().setValueFormatter(new xAxisFormatter());
 
         mLineChart.setTouchEnabled(true);
 
@@ -79,7 +79,7 @@ public class DetailsVM {
 
 
         Legend l = mLineChart.getLegend();
-        l.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_RIGHT);
     }
 
     private void retrieveData(String slug) {
@@ -90,12 +90,42 @@ public class DetailsVM {
         HashMap<String, ArrayList<Entry>> hashMapArrayList = new HashMap<>();
         ArrayList<String> datesArrayList = new ArrayList<>();
 
-        int i = 0;
-
         for (Estimate estimate : DetailsVM.mChart.getEstimates()){
             hashMapArrayList.put(estimate.getChoice(), new ArrayList<Entry>());
         }
 
+        buildLineDataSets(hashMapArrayList, datesArrayList);
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+
+        createLineDataSets(hashMapArrayList, dataSets);
+
+        LineData data = new LineData(datesArrayList, dataSets);
+
+        mLineChart.setData(data);
+        mLineChart.invalidate();
+    }
+
+    private void createLineDataSets(HashMap<String, ArrayList<Entry>> hashMapArrayList, ArrayList<ILineDataSet> dataSets) {
+        int i = 0;
+        for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
+            LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
+
+            setComp.setLineWidth(2.5f);
+//            setComp.setCircleRadius(4f);
+            setComp.disableDashedLine();
+            setComp.setDrawCircles(false);
+
+            int color = ColorMagic.createColor(i++);
+            setComp.setColor(color);
+            setComp.setCircleColor(color);
+
+            dataSets.add(setComp);
+        }
+    }
+
+    private void buildLineDataSets(HashMap<String, ArrayList<Entry>> hashMapArrayList, ArrayList<String> datesArrayList) {
+        int i = 0;
         for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate){
             String date = estimatesByDate.getDate();
             datesArrayList.add(date);
@@ -108,34 +138,5 @@ public class DetailsVM {
             }
             i++;
         }
-        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-
-//        Collections.reverse(datesArrayList);
-
-        Log.d(TAG, "buildChart: " + ColorTemplate.COLORFUL_COLORS.length);
-        Log.d(TAG, "buildChart: " + ColorTemplate.VORDIPLOM_COLORS.length);
-        Log.d(TAG, "buildChart: " + ColorTemplate.JOYFUL_COLORS.length);
-        Log.d(TAG, "buildChart: " + ColorTemplate.LIBERTY_COLORS.length);
-        Log.d(TAG, "buildChart: " + ColorTemplate.PASTEL_COLORS.length);
-
-        i = 0;
-        for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
-            LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
-
-
-            setComp.setLineWidth(2.5f);
-            setComp.setCircleRadius(4f);
-
-            int color = ColorMagic.createColor(i++);
-            setComp.setColor(color);
-            setComp.setCircleColor(color);
-
-            dataSets.add(setComp);
-        }
-
-        LineData data = new LineData(datesArrayList, dataSets);
-
-        mLineChart.setData(data);
-        mLineChart.invalidate();
     }
 }
