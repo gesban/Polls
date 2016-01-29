@@ -1,5 +1,6 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +23,7 @@ import com.loopcupcakes.apps.polls.view.animations.Animator;
 import com.loopcupcakes.apps.polls.viewmodel.adapters.TopicAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -34,7 +36,7 @@ import java.util.List;
  * Created by evin on 1/26/16.
  */
 public class MainVM {
-    private static final String TAG_ = Constants.MainVMTAG_;
+    private static final String TAG = Constants.MainVMTAG_;
     public static ArrayList<Topic> mTopics;
     public static TopicAdapter mTopicAdapter;
 
@@ -119,7 +121,7 @@ public class MainVM {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     default:
-                        Log.d(TAG_, "Item selected " + item.getTitle());
+                        Log.d(TAG, "Item selected " + item.getTitle());
                 }
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -193,4 +195,17 @@ public class MainVM {
         mAnimator.fadeOut(mProgressBar, 500);
     }
 
+    public void initializeUpdater() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (NetworkMagic.isOnline(mMainActivity)){
+                    Log.d(TAG, "run: yes");
+                }else {
+                    Log.d(TAG, "run: nain");
+                }
+            }
+        }, Constants.HandlerDelayInt);
+    }
 }

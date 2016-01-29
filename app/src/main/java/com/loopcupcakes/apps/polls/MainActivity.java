@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mMainVM = new MainVM(this);
         mMainVM.initializeThirdPartyLibraries();
         mMainVM.initializeLayouts();
+        mMainVM.initializeUpdater();
     }
 
     @Override

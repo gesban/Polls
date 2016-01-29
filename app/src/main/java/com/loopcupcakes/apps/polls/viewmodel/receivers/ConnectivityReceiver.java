@@ -8,11 +8,13 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
 
 import java.util.Date;
 
 public class ConnectivityReceiver extends BroadcastReceiver {
     private static final String TAG = Constants.ConnectivityReceiverTAG_;
+    private static boolean hasRun = false;
 
     public ConnectivityReceiver() {
     }
@@ -20,12 +22,6 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "onReceive: " + new Date());
-        Log.d(TAG, "onReceive: " + isOnline(context));
-    }
-
-    public boolean isOnline(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return (netInfo != null && netInfo.isConnected());
+        Log.d(TAG, "onReceive: " + NetworkMagic.isOnline(context));
     }
 }
