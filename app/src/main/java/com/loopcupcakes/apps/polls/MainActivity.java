@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 import com.loopcupcakes.apps.polls.viewmodel.receivers.ConnectivityReceiver;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.MainActivityTAG_;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         mMainVM = new MainVM(this);

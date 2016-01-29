@@ -54,7 +54,9 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="" />
-
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="" />
     </application>
 
 </manifest>
