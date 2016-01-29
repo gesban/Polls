@@ -10,6 +10,7 @@ import com.crashlytics.android.Crashlytics;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 import com.loopcupcakes.apps.polls.viewmodel.receivers.ConnectivityReceiver;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 Fix landscape
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
+    // TODO: 1/29/16 Add LeakCanary support
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;

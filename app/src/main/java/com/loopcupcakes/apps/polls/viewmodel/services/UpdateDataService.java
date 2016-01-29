@@ -2,10 +2,7 @@ package com.loopcupcakes.apps.polls.viewmodel.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 
-import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
 import com.loopcupcakes.apps.polls.viewmodel.MainVM;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;

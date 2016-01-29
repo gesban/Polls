@@ -3,13 +3,10 @@ package com.loopcupcakes.apps.polls.viewmodel.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
-
-import java.util.Date;
 
 public class ConnectivityReceiver extends BroadcastReceiver {
     private static final String TAG = Constants.ConnectivityReceiverTAG_;
