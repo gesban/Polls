@@ -31,4 +31,6 @@
     <dimen name="recycler_card_icon_large_dims">20dp</dimen>
     <dimen name="f_details_provided_margin">5dp</dimen>
     <dimen name="f_details_historic_button_padding">10dp</dimen>
+    <dimen name="f_about_padding">20dp</dimen>
+    <dimen name="f_about_title_font_size">15sp</dimen>
 </resources>
