@@ -33,5 +33,6 @@
     <string name="f_details_history_icon">View chart history</string>
     <string name="f_details_close_icon">Close details</string>
     <string name="f_details_provided_pollster_message">Data provided by HuffPost Pollster</string>
+    <string name="f_details_expand_less_icon">Go back to available charts</string>
 
 </resources>

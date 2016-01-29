@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,7 +32,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class DetailsFragment extends DialogFragment {
-
+    // TODO: 1/29/16 Show snackBar to history
     private static final String TAG = Constants.DetailsFragmentTAG_;
     private static CandidateAdapter mCandidateAdapter;
     private static ArrayList<Estimate> mEstimates;
@@ -93,12 +95,26 @@ public class DetailsFragment extends DialogFragment {
 
         updateTextViews(view);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.f_details_timeline_btn);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        ImageView imageViewHistory = (ImageView) view.findViewById(R.id.f_details_timeline_btn);
+        imageViewHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailsActivity.class);
                 v.getContext().startActivity(intent);
+            }
+        });
+
+        ImageView imageViewLess = (ImageView) view.findViewById(R.id.f_details_up_btn);
+        imageViewLess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                DetailsFragment f = (DetailsFragment) fm.findFragmentByTag(Constants.ChartFragmentKey);
+                if (f != null){
+                    ft.remove(f);
+                    ft.commit();
+                }
             }
         });
 
