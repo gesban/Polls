@@ -95,6 +95,10 @@ public class DetailsFragment extends DialogFragment {
 
         updateTextViews(view);
 
+        setListeners(view);
+    }
+
+    private void setListeners(View view) {
         ImageView imageViewHistory = (ImageView) view.findViewById(R.id.f_details_timeline_btn);
         imageViewHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +122,14 @@ public class DetailsFragment extends DialogFragment {
             }
         });
 
+        TextView textViewHistorical = (TextView) view.findViewById(R.id.f_details_history_txt);
+        textViewHistorical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     private void updateTextViews(View view) {
