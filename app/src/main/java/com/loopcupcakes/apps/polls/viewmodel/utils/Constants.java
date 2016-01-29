@@ -28,7 +28,5 @@ public class Constants {
 
     public static final String BASE_POLLSTER_URL = "http://elections.huffingtonpost.com";
 
-    public enum FRAGMENT_TYPE{
-        LOADING, HOME
-    }
+    public static final float LineWidthChart = 2.5f;
 }

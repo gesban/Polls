@@ -20,7 +20,8 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.xAxisFormatter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -77,9 +78,8 @@ public class DetailsVM {
 
         mLineChart.setPinchZoom(false);
 
-
         Legend l = mLineChart.getLegend();
-        l.setPosition(Legend.LegendPosition.BELOW_CHART_RIGHT);
+        l.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
     }
 
     private void retrieveData(String slug) {
@@ -87,18 +87,18 @@ public class DetailsVM {
     }
 
     public void buildChart() {
-        HashMap<String, ArrayList<Entry>> hashMapArrayList = new HashMap<>();
+        LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList = new LinkedHashMap<>();
         ArrayList<String> datesArrayList = new ArrayList<>();
 
         for (Estimate estimate : DetailsVM.mChart.getEstimates()){
-            hashMapArrayList.put(estimate.getChoice(), new ArrayList<Entry>());
+            LinkedHashMapArrayList.put(estimate.getChoice(), new ArrayList<Entry>());
         }
 
-        buildLineDataSets(hashMapArrayList, datesArrayList);
+        buildLineDataSets(LinkedHashMapArrayList, datesArrayList);
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
 
-        createLineDataSets(hashMapArrayList, dataSets);
+        createLineDataSets(LinkedHashMapArrayList, dataSets);
 
         LineData data = new LineData(datesArrayList, dataSets);
 
@@ -106,13 +106,13 @@ public class DetailsVM {
         mLineChart.invalidate();
     }
 
-    private void createLineDataSets(HashMap<String, ArrayList<Entry>> hashMapArrayList, ArrayList<ILineDataSet> dataSets) {
+    private void createLineDataSets(LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList, ArrayList<ILineDataSet> dataSets) {
+        final float lineWidth = Constants.LineWidthChart;
         int i = 0;
-        for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
+        for (Map.Entry<String, ArrayList<Entry>> entry : LinkedHashMapArrayList.entrySet()){
             LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
 
-            setComp.setLineWidth(2.5f);
-//            setComp.setCircleRadius(4f);
+            setComp.setLineWidth(lineWidth);
             setComp.disableDashedLine();
             setComp.setDrawCircles(false);
 
@@ -124,16 +124,18 @@ public class DetailsVM {
         }
     }
 
-    private void buildLineDataSets(HashMap<String, ArrayList<Entry>> hashMapArrayList, ArrayList<String> datesArrayList) {
+    private void buildLineDataSets(LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList, ArrayList<String> datesArrayList) {
         int i = 0;
+        Collections.reverse(DetailsVM.mEstimatesByDate);
+
         for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate){
             String date = estimatesByDate.getDate();
             datesArrayList.add(date);
             for (Estimate_ estimate_ : estimatesByDate.getEstimates()){
                 Entry entry = new Entry(estimate_.getValue().floatValue(), i);
                 String choice = estimate_.getChoice();
-                if (hashMapArrayList.get(choice) != null){
-                    hashMapArrayList.get(estimate_.getChoice()).add(entry);
+                if (LinkedHashMapArrayList.get(choice) != null){
+                    LinkedHashMapArrayList.get(estimate_.getChoice()).add(entry);
                 }
             }
             i++;
