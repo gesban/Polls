@@ -64,8 +64,14 @@
                 android:text="@string/loading_text"
                 android:textSize="@dimen/recycler_min_font_size" />
 
-
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/recycler_topic_doc_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_text"
+            android:textSize="@dimen/recycler_min_font_size" />
 
     </LinearLayout>
 
