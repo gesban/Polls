@@ -52,4 +52,12 @@ public class Topic extends ParseObject{
     public void setPriority(int priority){
         put("priority", priority);
     }
+
+    public void setDocs(String docs){
+        put("docs", docs);
+    }
+
+    public String getDocs(){
+        return getString("docs");
+    }
 }
