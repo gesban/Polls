@@ -160,9 +160,9 @@
 
     <TextView
         android:id="@+id/f_details_history_txt"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:padding="@dimen/f_details_historic_button_padding"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/f_details_provided_margin"
         android:gravity="end"
         android:textStyle="bold"
         android:textColor="@color/colorAccent"
