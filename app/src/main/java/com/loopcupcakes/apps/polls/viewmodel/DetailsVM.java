@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -16,6 +17,7 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Estimate_;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
+import com.loopcupcakes.apps.polls.viewmodel.utils.ColorMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.util.ArrayList;
@@ -46,10 +48,38 @@ public class DetailsVM {
     public void initializeLayout() {
         mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
 
+        setupLineChart();
+
         if (mChart != null){
             final String slug = mChart.getSlug();
             retrieveData(slug);
         }
+    }
+
+    private void setupLineChart() {
+        mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
+
+        mLineChart.setDrawGridBackground(false);
+        mLineChart.setDescription("");
+        mLineChart.setDrawBorders(false);
+
+        mLineChart.getAxisLeft().setDrawAxisLine(false);
+        mLineChart.getAxisLeft().setDrawGridLines(false);
+        mLineChart.getAxisRight().setDrawAxisLine(false);
+        mLineChart.getAxisRight().setDrawGridLines(false);
+        mLineChart.getXAxis().setDrawAxisLine(false);
+        mLineChart.getXAxis().setDrawGridLines(false);
+
+        mLineChart.setTouchEnabled(true);
+
+        mLineChart.setDragEnabled(true);
+        mLineChart.setScaleEnabled(true);
+
+        mLineChart.setPinchZoom(false);
+
+
+        Legend l = mLineChart.getLegend();
+        l.setPosition(Legend.LegendPosition.LEFT_OF_CHART_INSIDE);
     }
 
     private void retrieveData(String slug) {
@@ -91,31 +121,21 @@ public class DetailsVM {
         i = 0;
         for (Map.Entry<String, ArrayList<Entry>> entry : hashMapArrayList.entrySet()){
             LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
-            setComp.disableDashedLine();
-            setComp.setDrawCircles(false);
-            setComp.setLineWidth(4.5f);
-            setComp.setColor(ColorTemplate.COLORFUL_COLORS[i++]);
+
+
+            setComp.setLineWidth(2.5f);
+            setComp.setCircleRadius(4f);
+
+            int color = ColorMagic.createColor(i++);
+            setComp.setColor(color);
+            setComp.setCircleColor(color);
+
             dataSets.add(setComp);
-            if (i > 4)
-                break;
-//            dataSets.Col
         }
 
         LineData data = new LineData(datesArrayList, dataSets);
+
         mLineChart.setData(data);
-
-        mLineChart.setDrawGridBackground(false);
-        mLineChart.setDescription("");
-        mLineChart.setDrawBorders(false);
-
-        mLineChart.getAxisLeft().setDrawAxisLine(false);
-        mLineChart.getAxisLeft().setDrawGridLines(false);
-        mLineChart.getAxisRight().setDrawAxisLine(false);
-        mLineChart.getAxisRight().setDrawGridLines(false);
-        mLineChart.getXAxis().setDrawAxisLine(false);
-        mLineChart.getXAxis().setDrawGridLines(false);
-
-
         mLineChart.invalidate();
     }
 }
