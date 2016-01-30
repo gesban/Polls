@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
+import com.crashlytics.android.Crashlytics;
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
@@ -41,6 +42,8 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by evin on 1/26/16.
@@ -85,7 +88,7 @@ public class MainVM {
 
     public void initializeThirdPartyLibraries() {
         mParseVM.initializeParse();
-//        Fabric.with(mMainActivity, new Crashlytics());
+        Fabric.with(mMainActivity, new Crashlytics());
     }
 
     public void initializeLayouts() {

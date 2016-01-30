@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/29/16 Add watch an ad support
     // TODO: 1/29/16 Add LeakCanary support
     // TODO: 1/29/16 Add search feature
+    // TODO: 1/30/16 Re-enable toolbar
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
