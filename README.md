@@ -1,5 +1,6 @@
 # Polls
 Polls is the easiest way to stay informed about the last minute political changes in these electoral times. 
+https://play.google.com/store/apps/details?id=com.loopcupcakes.apps.polls
 ![main splash](http://i.imgur.com/bvRqt1J.png)
 
 It will give you detailed information on every state election process going, from the Presidential Republican and Democratic primaries to the Gubernatorial Election.
