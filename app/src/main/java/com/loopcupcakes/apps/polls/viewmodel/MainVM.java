@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
-import com.crashlytics.android.Crashlytics;
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
@@ -42,8 +41,6 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by evin on 1/26/16.
@@ -72,21 +69,23 @@ public class MainVM {
         mMainActivity = mainActivity;
         mParseVM = new ParseVM(mMainActivity);
         mAnimator = new Animator();
+        makeLookups();
     }
 
-    public void initializeThirdPartyLibraries() {
-        mParseVM.initializeParse();
-        Fabric.with(mMainActivity, new Crashlytics());
-    }
-
-    public void initializeLayouts() {
+    private void makeLookups() {
         mDrawerLayout = (DrawerLayout) mMainActivity.findViewById(R.id.a_main_drawer);
         mNavigationView = (NavigationView) mMainActivity.findViewById(R.id.a_main_nav);
         mRecyclerView = (RecyclerView) mMainActivity.findViewById(R.id.a_main_recycler);
         mProgressBar = (ProgressBar) mMainActivity.findViewById(R.id.a_main_progressbar);
+    }
 
+    public void initializeThirdPartyLibraries() {
+        mParseVM.initializeParse();
+//        Fabric.with(mMainActivity, new Crashlytics());
+    }
+
+    public void initializeLayouts() {
         configureActionBar();
-        retrieveTopics();
         configureRecycler();
         setupButtons();
     }
@@ -193,7 +192,7 @@ public class MainVM {
         };
     }
 
-    private void retrieveTopics() {
+    public void retrieveTopics() {
         // TODO: 1/26/16 Update loading TextView if no connection
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
@@ -237,7 +236,7 @@ public class MainVM {
         mTopicAdapter.notifyDataSetChanged();
     }
 
-    private void hideProgressBar(){
+    public void hideProgressBar(){
         mAnimator.fadeOut(mProgressBar, 500);
     }
 
