@@ -20,7 +20,6 @@ import retrofit2.Retrofit;
  * Created by evin on 1/27/16.
  */
 public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
-    // TODO: 1/30/16 Check if it is already running
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.EstimatesTaskTAG_;
     private DetailsVM mDetailsVM;

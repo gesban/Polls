@@ -11,17 +11,13 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.MainActivityTAG_;
-    // TODO: 1/26/16 Handle savedInstance
     // TODO: 1/28/16 Menu items
-    // TODO: 1/27/16 Handle scrollable toolbar http://android-developers.blogspot.com/2015/05/android-design-support-library.html
     // TODO: 1/28/16 Implement Analytics
     // TODO: 1/28/16 RecyclerView animations
-    // TODO: 1/28/16 Fix landscape
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
     // TODO: 1/29/16 Add LeakCanary support
     // TODO: 1/29/16 Add search feature
-    // TODO: 1/30/16 Re-enable toolbar
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;

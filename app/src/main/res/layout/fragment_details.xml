@@ -52,7 +52,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- TODO Check if set as Single Line -->
         <TextView
             android:id="@+id/f_details_title_txt"
             android:layout_width="match_parent"

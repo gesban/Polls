@@ -32,7 +32,6 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class DetailsFragment extends DialogFragment {
-    // TODO: 1/29/16 Show snackBar to history
     private static final String TAG = Constants.DetailsFragmentTAG_;
     private static CandidateAdapter mCandidateAdapter;
     private static ArrayList<Estimate> mEstimates;
