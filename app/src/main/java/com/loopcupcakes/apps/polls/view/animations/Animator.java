@@ -11,8 +11,10 @@ import android.view.animation.Animation;
 public class Animator {
 
     public void fadeOut(final View view, final int duration) {
-        AlphaAnimation fadeOutAnimation = fadeOutSkeleton(view, duration);
-        view.startAnimation(fadeOutAnimation);
+        if (view != null){
+            AlphaAnimation fadeOutAnimation = fadeOutSkeleton(view, duration);
+            view.startAnimation(fadeOutAnimation);
+        }
     }
 
     @NonNull
