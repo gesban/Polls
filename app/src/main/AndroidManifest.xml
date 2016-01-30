@@ -31,7 +31,6 @@
             android:name=".DetailsActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".SlugActivity"
-            android:screenOrientation="landscape"
             android:theme="@style/AppTheme">
 
         </activity>
@@ -58,5 +57,4 @@
             android:name="io.fabric.ApiKey"
             android:value="" />
     </application>
-
 </manifest>
