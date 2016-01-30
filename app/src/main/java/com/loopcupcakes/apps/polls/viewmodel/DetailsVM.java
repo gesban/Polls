@@ -1,6 +1,9 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -32,7 +35,10 @@ public class DetailsVM {
     private static final String TAG = Constants.DetailsVMTAG_;
     DetailsActivity mDetailsActivity;
     Intent mIntent;
+
     private LineChart mLineChart;
+    private ActionBar mActionBar;
+    private TextView mTextViewTitle;
 
     public static Chart mChart;
     public static ArrayList<EstimatesByDate> mEstimatesByDate;
@@ -48,8 +54,10 @@ public class DetailsVM {
 
     public void initializeLayout() {
         mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
+        mTextViewTitle = (TextView) mDetailsActivity.findViewById(R.id.a_details_title_text);
 
         setupLineChart();
+        configureActionBar();
 
         if (mChart != null){
             final String slug = mChart.getSlug();
@@ -57,11 +65,35 @@ public class DetailsVM {
         }
     }
 
+    private void configureActionBar() {
+        Toolbar toolbar = (Toolbar) mDetailsActivity.findViewById(R.id.a_details_toolbar);
+        String title = mDetailsActivity.getString(R.string.app_name) + " | " + mDetailsActivity.getString(R.string.a_slug_title);
+
+        mDetailsActivity.setSupportActionBar(toolbar);
+
+        mActionBar = mDetailsActivity.getSupportActionBar();
+
+        if (mActionBar != null) {
+            mActionBar.setDisplayHomeAsUpEnabled(true);
+            mActionBar.setHomeButtonEnabled(true);
+            mActionBar.setTitle(title);
+            mActionBar.setSubtitle("");
+        }
+
+        if (mChart != null){
+            final String stringExtra = mChart.getShortTitle();
+
+            mActionBar.setSubtitle(stringExtra);
+            mTextViewTitle.setText(stringExtra);
+        }
+
+    }
+
     private void setupLineChart() {
         mLineChart = (LineChart) mDetailsActivity.findViewById(R.id.a_details_linechart);
 
         mLineChart.setDrawGridBackground(false);
-        mLineChart.setDescription(mChart.getShortTitle());
+        mLineChart.setDescription("");
         mLineChart.setDrawBorders(false);
 
         mLineChart.getAxisLeft().setDrawAxisLine(false);
@@ -77,10 +109,15 @@ public class DetailsVM {
         mLineChart.setDragEnabled(true);
         mLineChart.setScaleEnabled(true);
 
-        mLineChart.setPinchZoom(false);
+        mLineChart.animateX(2000);
+
+        mLineChart.setAlpha(0.9f);
+
+        mLineChart.setPinchZoom(true);
 
         Legend l = mLineChart.getLegend();
-        l.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setWordWrapEnabled(true);
     }
 
     private void retrieveData(String slug) {
