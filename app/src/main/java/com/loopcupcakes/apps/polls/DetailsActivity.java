@@ -21,10 +21,6 @@ public class DetailsActivity extends AppCompatActivity {
         // TODO: 1/27/16 AsyncTask to fill plot
         // TODO: 1/28/16 Fix rotation saving
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
