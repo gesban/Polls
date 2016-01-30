@@ -41,6 +41,8 @@ public class SlugVM {
     private TextView mTextViewTitle;
     private ImageButton mBackButton;
 
+    private Intent mIntent;
+
     static {
         mCharts = new ArrayList<>();
         mChartAdapter = new ChartAdapter(mCharts);
@@ -49,14 +51,23 @@ public class SlugVM {
     public SlugVM(SlugActivity slugActivity) {
         mSlugActivity = slugActivity;
         mAnimator = new Animator();
+
+        makeLookups();
+        getIntent();
     }
 
-    public void initializeLayouts() {
+    private void getIntent() {
+        mIntent = mSlugActivity.getIntent();
+    }
+
+    private void makeLookups() {
         mRecyclerView = (RecyclerView) mSlugActivity.findViewById(R.id.a_slug_recycler);
         mProgressBar = (ProgressBar) mSlugActivity.findViewById(R.id.a_slug_progressbar);
         mTextViewTitle = (TextView) mSlugActivity.findViewById(R.id.a_slug_title_text);
         mBackButton = (ImageButton) mSlugActivity.findViewById(R.id.a_slug_hamburger_image);
+    }
 
+    public void initializeLayouts() {
         configureActionBar();
         configureRecyclerView();
         setupButtons();
@@ -82,7 +93,6 @@ public class SlugVM {
     private void configureActionBar() {
         Toolbar toolbar = (Toolbar) mSlugActivity.findViewById(R.id.a_slug_toolbar);
         String title = mSlugActivity.getString(R.string.app_name) + " | " + mSlugActivity.getString(R.string.a_slug_title);
-        Intent intent = mSlugActivity.getIntent();
 
         mSlugActivity.setSupportActionBar(toolbar);
 
@@ -95,26 +105,26 @@ public class SlugVM {
             mActionBar.setSubtitle("");
         }
 
-        if (intent.hasExtra(Constants.SlugSubtitleKey)){
-            final String stringExtra = intent.getStringExtra(Constants.SlugSubtitleKey);
+        if (mIntent.hasExtra(Constants.SlugSubtitleKey)){
+            final String stringExtra = mIntent.getStringExtra(Constants.SlugSubtitleKey);
 
             mActionBar.setSubtitle(stringExtra);
             mTextViewTitle.setText(stringExtra);
         }
 
-        if (intent.hasExtra(Constants.SlugNameKey)){
-            retrieveData(intent.getStringExtra(Constants.SlugNameKey));
+    }
+
+    public void retrieveData() {
+        if (mIntent.hasExtra(Constants.SlugNameKey)) {
+            String slug = mIntent.getStringExtra(Constants.SlugNameKey);
+            new SlugsAsyncTask(this).execute(slug);
         }
     }
 
-    private void retrieveData(String slug) {
-        new SlugsAsyncTask(this).execute(slug);
-    }
-
     public void finishLoading(boolean status){
+        // TODO: 1/30/16 Refresh on new Internet connection (create Receiver)
         if (status){
             hideProgressBar();
-
             if (mChartAdapter.getItemCount() < 1){
                 Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.not_enough_data_message), Snackbar.LENGTH_LONG);
                 snackbar.show();

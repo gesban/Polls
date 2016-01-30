@@ -17,6 +17,15 @@ public class SlugActivity extends AppCompatActivity {
         setContentView(R.layout.activity_slug);
 
         mSlugVM = new SlugVM(this);
+        if (savedInstanceState == null){
+            mSlugVM.retrieveData();
+        }else {
+            if (SlugVM.mCharts.size() == 0){
+                mSlugVM.retrieveData();
+            }else {
+                mSlugVM.hideProgressBar();
+            }
+        }
         mSlugVM.initializeLayouts();
     }
 }
