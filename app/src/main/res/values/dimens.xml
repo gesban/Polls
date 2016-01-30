@@ -33,4 +33,5 @@
     <dimen name="f_details_historic_button_padding">10dp</dimen>
     <dimen name="f_about_padding">20dp</dimen>
     <dimen name="f_about_title_font_size">15sp</dimen>
+    <dimen name="a_main_recycler_margin_top">5dp</dimen>
 </resources>

@@ -88,23 +88,12 @@ public class MainVM {
 
     public void initializeThirdPartyLibraries() {
         mParseVM.initializeParse();
-        Fabric.with(mMainActivity, new Crashlytics());
+//        Fabric.with(mMainActivity, new Crashlytics());
     }
 
     public void initializeLayouts() {
         configureActionBar();
         configureRecycler();
-        setupButtons();
-    }
-
-    private void setupButtons() {
-        ImageButton new_home = (ImageButton) mMainActivity.findViewById(R.id.a_main_hamburger_image);
-        new_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
     }
 
     private void configureRecycler() {
@@ -200,7 +189,6 @@ public class MainVM {
     }
 
     public void retrieveTopics() {
-        // TODO: 1/26/16 Update loading TextView if no connection
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.fromLocalDatastore();
@@ -218,7 +206,6 @@ public class MainVM {
     }
 
     private void retrieveTopicsOnline() {
-        // TODO: 1/28/16 Fix SnackBar parent
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.findInBackground(new FindCallback<ParseObject>() {

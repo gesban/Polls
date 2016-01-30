@@ -40,7 +40,6 @@ public class SlugVM {
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private TextView mTextViewTitle;
-    private ImageButton mBackButton;
 
     private Intent mIntent;
 
@@ -65,22 +64,11 @@ public class SlugVM {
         mRecyclerView = (RecyclerView) mSlugActivity.findViewById(R.id.a_slug_recycler);
         mProgressBar = (ProgressBar) mSlugActivity.findViewById(R.id.a_slug_progressbar);
         mTextViewTitle = (TextView) mSlugActivity.findViewById(R.id.a_slug_title_text);
-        mBackButton = (ImageButton) mSlugActivity.findViewById(R.id.a_slug_hamburger_image);
     }
 
     public void initializeLayouts() {
         configureActionBar();
         configureRecyclerView();
-        setupButtons();
-    }
-
-    private void setupButtons() {
-        mBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mSlugActivity.onBackPressed();
-            }
-        });
     }
 
     private void configureRecyclerView() {
