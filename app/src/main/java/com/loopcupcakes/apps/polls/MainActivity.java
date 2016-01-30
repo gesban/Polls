@@ -17,18 +17,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.MainActivityTAG_;
     // TODO: 1/26/16 Handle savedInstance
     // TODO: 1/28/16 Menu items
-    // TODO: 1/27/16 Remove Loading Fragment and set a ProgressBar above
     // TODO: 1/27/16 Handle scrollable toolbar http://android-developers.blogspot.com/2015/05/android-design-support-library.html
-    // TODO: 1/27/16 Implement NestedScrollView http://developer.android.com/reference/android/support/design/widget/AppBarLayout.html
-    // TODO: 1/28/16 Implement Crashalytics
     // TODO: 1/28/16 Implement Analytics
     // TODO: 1/28/16 RecyclerView animations
-    // TODO: 1/28/16 Set nice icon
-    // TODO: 1/28/16 Check if Internet connection available
     // TODO: 1/28/16 Fix landscape
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
     // TODO: 1/29/16 Add LeakCanary support
+    // TODO: 1/29/16 Add search feature
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
@@ -37,13 +33,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         mMainVM = new MainVM(this);
-        mMainVM.initializeThirdPartyLibraries();
+        if (savedInstanceState == null){
+            mMainVM.initializeThirdPartyLibraries();
+            mMainVM.initializeUpdater();
+        }
         mMainVM.initializeLayouts();
-        mMainVM.initializeUpdater();
     }
 
     @Override
