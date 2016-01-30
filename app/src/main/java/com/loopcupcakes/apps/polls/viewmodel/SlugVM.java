@@ -19,6 +19,7 @@ import com.loopcupcakes.apps.polls.viewmodel.adapters.ChartAdapter;
 import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.SlugsAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.MessagesMagic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +106,7 @@ public class SlugVM {
             mActionBar.setSubtitle("");
         }
 
-        if (mIntent.hasExtra(Constants.SlugSubtitleKey)){
+        if (mIntent.hasExtra(Constants.SlugSubtitleKey)) {
             final String stringExtra = mIntent.getStringExtra(Constants.SlugSubtitleKey);
 
             mActionBar.setSubtitle(stringExtra);
@@ -121,17 +122,16 @@ public class SlugVM {
         }
     }
 
-    public void finishLoading(boolean status){
+    public void finishLoading(boolean status) {
         // TODO: 1/30/16 Refresh on new Internet connection (create Receiver)
-        if (status){
+        if (status) {
             hideProgressBar();
-            if (mChartAdapter.getItemCount() < 1){
+            if (mChartAdapter.getItemCount() < 1) {
                 Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.not_enough_data_message), Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
-        }else {
-            Snackbar snackbar = Snackbar.make(mRecyclerView, mSlugActivity.getString(R.string.check_internet_message), Snackbar.LENGTH_LONG);
-            snackbar.show();
+        } else {
+            MessagesMagic.cantConnectMessage(2000, (View) mRecyclerView.getParent(), mSlugActivity.getString(R.string.check_internet_message));
         }
     }
 

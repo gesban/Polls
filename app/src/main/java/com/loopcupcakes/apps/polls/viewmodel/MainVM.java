@@ -33,6 +33,7 @@ import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.receivers.ConnectivityReceiver;
 import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.MessagesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -225,8 +226,7 @@ public class MainVM {
                     updateTopics(objects);
                     hideProgressBar();
                 } else {
-                    Snackbar snackbar = Snackbar.make(mDrawerLayout, mMainActivity.getString(R.string.check_internet_message), Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                    MessagesMagic.cantConnectMessage(2000, mDrawerLayout, mMainActivity.getString(R.string.check_internet_message));
                 }
             }
         });
