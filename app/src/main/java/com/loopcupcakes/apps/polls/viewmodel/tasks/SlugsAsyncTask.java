@@ -64,12 +64,11 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
 
     @Override
     protected void onPostExecute(List<Chart> charts) {
-        // TODO: 1/27/16 Improve not enough data validation
         super.onPostExecute(charts);
 
         if (charts != null){
             for (Chart chart : charts){
-                if (chart.getPollCount() > 6){
+                if (chart.getEstimates() != null && chart.getEstimates().size() > 1){
                     SlugVM.mCharts.add(chart);
                 }
             }
