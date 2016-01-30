@@ -47,7 +47,7 @@ public class DetailsVM {
         mEstimatesByDate = new ArrayList<>();
     }
 
-    public DetailsVM(DetailsActivity detailsActivity){
+    public DetailsVM(DetailsActivity detailsActivity) {
         mDetailsActivity = detailsActivity;
         mIntent = mDetailsActivity.getIntent();
     }
@@ -58,11 +58,6 @@ public class DetailsVM {
 
         setupLineChart();
         configureActionBar();
-
-        if (mChart != null){
-            final String slug = mChart.getSlug();
-            retrieveData(slug);
-        }
     }
 
     private void configureActionBar() {
@@ -80,11 +75,13 @@ public class DetailsVM {
             mActionBar.setSubtitle("");
         }
 
-        if (mChart != null){
+        if (mChart != null) {
             final String stringExtra = mChart.getShortTitle();
 
-            mActionBar.setSubtitle(stringExtra);
-            mTextViewTitle.setText(stringExtra);
+            if (mActionBar != null){
+                mActionBar.setSubtitle(stringExtra);
+                mTextViewTitle.setText(stringExtra);
+            }
         }
 
     }
@@ -109,8 +106,6 @@ public class DetailsVM {
         mLineChart.setDragEnabled(true);
         mLineChart.setScaleEnabled(true);
 
-        mLineChart.animateX(2000);
-
         mLineChart.setAlpha(0.9f);
 
         mLineChart.setPinchZoom(true);
@@ -120,11 +115,14 @@ public class DetailsVM {
         l.setWordWrapEnabled(true);
     }
 
-    private void retrieveData(String slug) {
-        if (!SharedPreferencesMagic.isChartFlagTrue(mDetailsActivity.getApplicationContext())){
-            new EstimatesAsyncTask(this, mDetailsActivity.getApplicationContext()).execute(slug);
-        }else {
-            buildChart();
+    public void retrieveData() {
+        if (mChart != null) {
+            final String slug = mChart.getSlug();
+            if (!SharedPreferencesMagic.isChartFlagTrue(mDetailsActivity.getApplicationContext())) {
+                new EstimatesAsyncTask(this, mDetailsActivity.getApplicationContext()).execute(slug);
+            } else {
+                buildChart();
+            }
         }
     }
 
@@ -132,7 +130,7 @@ public class DetailsVM {
         LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList = new LinkedHashMap<>();
         ArrayList<String> datesArrayList = new ArrayList<>();
 
-        for (Estimate estimate : DetailsVM.mChart.getEstimates()){
+        for (Estimate estimate : DetailsVM.mChart.getEstimates()) {
             LinkedHashMapArrayList.put(estimate.getChoice(), new ArrayList<Entry>());
         }
 
@@ -144,6 +142,8 @@ public class DetailsVM {
 
         LineData data = new LineData(datesArrayList, dataSets);
 
+        mLineChart.animateX(2000);
+
         mLineChart.setData(data);
         mLineChart.invalidate();
     }
@@ -151,7 +151,7 @@ public class DetailsVM {
     private void createLineDataSets(LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList, ArrayList<ILineDataSet> dataSets) {
         final float lineWidth = Constants.LineWidthChart;
         int i = 0;
-        for (Map.Entry<String, ArrayList<Entry>> entry : LinkedHashMapArrayList.entrySet()){
+        for (Map.Entry<String, ArrayList<Entry>> entry : LinkedHashMapArrayList.entrySet()) {
             LineDataSet setComp = new LineDataSet(entry.getValue(), entry.getKey());
 
             setComp.setLineWidth(lineWidth);
@@ -169,17 +169,23 @@ public class DetailsVM {
     private void buildLineDataSets(LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList, ArrayList<String> datesArrayList) {
         int i = 0;
 
-        for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate){
+        for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate) {
             String date = estimatesByDate.getDate();
             datesArrayList.add(date);
-            for (Estimate_ estimate_ : estimatesByDate.getEstimates()){
+            for (Estimate_ estimate_ : estimatesByDate.getEstimates()) {
                 Entry entry = new Entry(estimate_.getValue().floatValue(), i);
                 String choice = estimate_.getChoice();
-                if (LinkedHashMapArrayList.get(choice) != null){
+                if (LinkedHashMapArrayList.get(choice) != null) {
                     LinkedHashMapArrayList.get(estimate_.getChoice()).add(entry);
                 }
             }
             i++;
         }
+    }
+
+    public void clearMemory() {
+        mLineChart = null;
+        mActionBar = null;
+        mTextViewTitle = null;
     }
 }

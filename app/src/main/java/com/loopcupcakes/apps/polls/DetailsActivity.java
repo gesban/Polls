@@ -24,6 +24,16 @@ public class DetailsActivity extends AppCompatActivity {
 
         mDetailsVM = new DetailsVM(this);
         mDetailsVM.initializeLayout();
+        if (savedInstanceState == null){
+            mDetailsVM.retrieveData();
+        }else {
+            mDetailsVM.buildChart();
+        }
     }
 
+    @Override
+    protected void onDestroy() {
+        mDetailsVM.clearMemory();
+        super.onDestroy();
+    }
 }
