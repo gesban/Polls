@@ -131,7 +131,6 @@ public class DetailsVM {
 
     private void buildLineDataSets(LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList, ArrayList<String> datesArrayList) {
         int i = 0;
-        Collections.reverse(DetailsVM.mEstimatesByDate);
 
         for (EstimatesByDate estimatesByDate : DetailsVM.mEstimatesByDate){
             String date = estimatesByDate.getDate();

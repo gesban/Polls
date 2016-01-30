@@ -10,6 +10,8 @@ import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.SharedPreferencesMagic;
 
+import java.util.Collections;
+
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
@@ -68,6 +70,7 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
         if (chart != null){
             DetailsVM.mEstimatesByDate.clear();
             DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
+            Collections.reverse(DetailsVM.mEstimatesByDate);
             if (mDetailsVM != null){
                 mDetailsVM.buildChart();
             }
