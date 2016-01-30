@@ -4,8 +4,6 @@ import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import com.loopcupcakes.apps.polls.R;
-
 /**
  * Created by evin on 1/30/16.
  */

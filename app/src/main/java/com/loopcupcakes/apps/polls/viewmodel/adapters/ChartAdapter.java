@@ -13,7 +13,9 @@ import com.loopcupcakes.apps.polls.SlugActivity;
 import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.view.fragments.DetailsFragment;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
+import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.SharedPreferencesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.TextViewMagic;
 
 import java.util.List;
@@ -63,8 +65,14 @@ public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> 
                     detailsFragment.show(fragmentTransaction, Constants.ChartFragmentKey);
 
                     DetailsVM.mChart = chartItem;
+                    tryToPreloadChartItems(v.getContext());
                 }
             });
+        }
+
+        private void tryToPreloadChartItems(Context context) {
+            SharedPreferencesMagic.clearChartFlag(context);
+            new EstimatesAsyncTask(null, context).execute(chartItem.getSlug());
         }
     }
 

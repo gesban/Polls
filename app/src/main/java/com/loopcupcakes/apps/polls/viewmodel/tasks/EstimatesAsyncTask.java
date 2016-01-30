@@ -1,5 +1,6 @@
 package com.loopcupcakes.apps.polls.viewmodel.tasks;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -7,6 +8,7 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.Chart;
 import com.loopcupcakes.apps.polls.viewmodel.DetailsVM;
 import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.SharedPreferencesMagic;
 
 import retrofit2.Call;
 import retrofit2.GsonConverterFactory;
@@ -16,18 +18,20 @@ import retrofit2.Retrofit;
  * Created by evin on 1/27/16.
  */
 public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
+    // TODO: 1/30/16 Check if it is already running
     private static final String BASE_URL = Constants.BASE_POLLSTER_URL;
     private static final String TAG = Constants.EstimatesTaskTAG_;
     private DetailsVM mDetailsVM;
+    private Context mContext;
 
-    public EstimatesAsyncTask(DetailsVM detailsVM) {
+    public EstimatesAsyncTask(DetailsVM detailsVM, Context context) {
         mDetailsVM = detailsVM;
+        mContext = context;
     }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        DetailsVM.mEstimatesByDate.clear();
     }
 
     @Override
@@ -62,8 +66,12 @@ public class EstimatesAsyncTask extends AsyncTask<String, Void, Chart> {
         super.onPostExecute(chart);
 
         if (chart != null){
+            DetailsVM.mEstimatesByDate.clear();
             DetailsVM.mEstimatesByDate.addAll(chart.getEstimatesByDate());
-            mDetailsVM.buildChart();
+            if (mDetailsVM != null){
+                mDetailsVM.buildChart();
+            }
+            SharedPreferencesMagic.setChartFlag(mContext);
         }
     }
 }

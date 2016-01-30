@@ -17,6 +17,7 @@ import com.loopcupcakes.apps.polls.model.entities.huffpost.EstimatesByDate;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.EstimatesAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.ColorMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
+import com.loopcupcakes.apps.polls.viewmodel.utils.SharedPreferencesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.xAxisFormatter;
 
 import java.util.ArrayList;
@@ -83,7 +84,11 @@ public class DetailsVM {
     }
 
     private void retrieveData(String slug) {
-        new EstimatesAsyncTask(this).execute(slug);
+        if (!SharedPreferencesMagic.isChartFlagTrue(mDetailsActivity.getApplicationContext())){
+            new EstimatesAsyncTask(this, mDetailsActivity.getApplicationContext()).execute(slug);
+        }else {
+            buildChart();
+        }
     }
 
     public void buildChart() {

@@ -27,6 +27,9 @@ public class Constants {
     public static final String ChartFragmentKey = "chart_fragment_key";
     public static final String AboutFragmentKey = "about_fragment_key";
 
+    public static final String SharedPreferencesFileKey = "shared_pref_key";
+    public static final String ChartLoadedKey = "shared_pref_chart_loaded_key";
+
     public static final String ParseDateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'";
     public static final String CustomDateFormat = "yyyy'-'MM'-'dd";
     public static final String ConvertToDateFormat = "MMM' 'yy";
@@ -36,4 +39,5 @@ public class Constants {
     public static final float LineWidthChart = 2.5f;
 
     public static final long HandlerDelayInt = 10000;
+
 }
