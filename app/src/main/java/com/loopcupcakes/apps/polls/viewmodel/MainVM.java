@@ -53,6 +53,7 @@ public class MainVM {
     private MainActivity mMainActivity;
     private ParseVM mParseVM;
     private Animator mAnimator;
+    private boolean isReceiverRegistered;
 
     private ActionBar mActionBar;
     private DrawerLayout mDrawerLayout;
@@ -69,6 +70,9 @@ public class MainVM {
         mMainActivity = mainActivity;
         mParseVM = new ParseVM(mMainActivity);
         mAnimator = new Animator();
+
+        isReceiverRegistered = false;
+
         makeLookups();
     }
 
@@ -252,8 +256,13 @@ public class MainVM {
                     mMainActivity.startService(intentService);
                 }else {
                     mMainActivity.registerReceiver(mMainActivity.mConnectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+                    isReceiverRegistered = true;
                 }
             }
         }, Constants.HandlerDelayInt);
+    }
+
+    public boolean isReceiverRegistered() {
+        return isReceiverRegistered;
     }
 }
