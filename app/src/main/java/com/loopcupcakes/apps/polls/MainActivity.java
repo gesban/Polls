@@ -15,11 +15,10 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/28/16 RecyclerView animations
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
-    // TODO: 1/29/16 Add LeakCanary support
     // TODO: 1/29/16 Add search feature
-    // TODO: 1/30/16 Add share button
-    // TODO: 1/30/16 Add push notifications
+    // TODO: 1/30/16 Add share button on candidates list
     // TODO: 1/30/16 Add https://developers.google.com/app-indexing/android/app
+    // TODO: 1/30/16 Add onReceive push logic
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
