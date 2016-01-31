@@ -79,11 +79,6 @@ public class MainVM {
         mProgressBar = (ProgressBar) mMainActivity.findViewById(R.id.a_main_progressbar);
     }
 
-    public void initializeThirdPartyLibraries() {
-        mParseVM.initializeParse();
-//        Fabric.with(mMainActivity, new Crashlytics());
-    }
-
     public void initializeLayouts() {
         configureActionBar();
         configureRecycler();

@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         mMainVM = new MainVM(this);
         if (savedInstanceState == null){
-            mMainVM.initializeThirdPartyLibraries();
             mMainVM.retrieveTopics();
             mMainVM.initializeUpdater();
         }else {
