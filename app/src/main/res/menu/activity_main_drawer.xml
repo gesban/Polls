@@ -7,15 +7,6 @@
             android:icon="@drawable/ic_home_black_48dp"
             android:title="@string/nav_home" />
 
-        <!--<item-->
-        <!--android:id="@+id/nav_technology"-->
-        <!--android:icon="@drawable/ic_android_black_48dp"-->
-        <!--android:title="@string/nav_change_technology" />-->
-
-        <!--<item-->
-            <!--android:id="@+id/nav_history"-->
-            <!--android:icon="@drawable/ic_history_black_48dp"-->
-            <!--android:title="@string/nav_history" />-->
     </group>
 
     <item android:title="@string/app_name">
@@ -32,6 +23,17 @@
                 android:title="@string/nav_rate" />
 
             <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_black_48dp"
+                android:title="@string/nav_share" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/f_about_author">
+        <menu>
+
+            <item
                 android:id="@+id/nav_more"
                 android:icon="@drawable/ic_more_black_48dp"
                 android:title="@string/nav_more" />
@@ -41,10 +43,6 @@
                 android:icon="@drawable/ic_airline_seat_flat_black_48dp"
                 android:title="@string/nav_about" />
 
-            <!--<item-->
-                <!--android:id="@+id/nav_logout"-->
-                <!--android:icon="@drawable/ic_exit_to_app_black_48dp"-->
-                <!--android:title="@string/nav_logout" />-->
         </menu>
     </item>
 

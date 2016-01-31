@@ -1,11 +1,8 @@
 package com.loopcupcakes.apps.polls.viewmodel;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -16,13 +13,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
-import com.crashlytics.android.Crashlytics;
 import com.loopcupcakes.apps.polls.MainActivity;
 import com.loopcupcakes.apps.polls.R;
 import com.loopcupcakes.apps.polls.model.entities.parse.Topic;
@@ -35,6 +29,7 @@ import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.MessagesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
+import com.loopcupcakes.apps.polls.viewmodel.utils.ShareAppMagic;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -42,8 +37,6 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by evin on 1/26/16.
@@ -124,71 +117,32 @@ public class MainVM {
     }
 
     private NavigationView.OnNavigationItemSelectedListener getNavigationListener() {
-        // TODO: 1/26/16 Add menu items
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        Log.d(TAG, "onNavigationItemSelected: Home");
-                        break;
                     case R.id.nav_about:
                         showAbout();
                         break;
                     case R.id.nav_rate:
-                        rateApp();
+                        ShareAppMagic.rateApp(mMainActivity);
                         break;
                     case R.id.nav_like:
-                        likeApp();
+                        ShareAppMagic.likeApp(mMainActivity);
                         break;
                     case R.id.nav_more:
-                        openMoreApps();
+                        ShareAppMagic.openMoreApps(mMainActivity);
                         break;
-                    default:
-                        Log.d(TAG, "Item selected " + item.getTitle());
+                    case R.id.nav_share:
+                        ShareAppMagic.shareApp(mMainActivity);
+                        break;
+                    default: case R.id.nav_home:
                 }
 
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         };
-    }
-
-    private void openMoreApps() {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MoreAppsByDeveloperUrl));
-        mMainActivity.startActivity(intent);
-    }
-
-    private void likeApp() {
-        Intent intent = null;
-        try {
-            mMainActivity.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + Constants.FacebookPageId));
-        } catch (Exception e) {
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + Constants.FacebookPageId));
-        }finally {
-            if (intent != null){
-                mMainActivity.startActivity(intent);
-            }
-        }
-    }
-
-
-    private void rateApp() {
-        Uri uri = Uri.parse("market://details?id=" + mMainActivity.getBaseContext().getPackageName());
-        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        } else {
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        }
-
-        try {
-            mMainActivity.startActivity(goToMarket);
-        } catch (ActivityNotFoundException e) {
-            mMainActivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + mMainActivity.getBaseContext().getPackageName())));
-        }
     }
 
     private void showAbout() {

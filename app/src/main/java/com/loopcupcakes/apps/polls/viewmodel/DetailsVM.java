@@ -24,7 +24,6 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.SharedPreferencesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.xAxisFormatter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

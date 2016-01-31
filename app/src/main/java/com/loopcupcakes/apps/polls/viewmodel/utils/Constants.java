@@ -44,4 +44,5 @@ public class Constants {
 
     public static final String MoreAppsByDeveloperUrl = "https://play.google.com/store/apps/developer?id=Loop+Cupcakes";
 
+    public static final String AppPlayStoreURL = "https://play.google.com/store/apps/details?id=";
 }

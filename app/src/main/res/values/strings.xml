@@ -44,5 +44,7 @@
     <string name="f_about_date">January 2016</string>
     <string name="nav_like">Like app</string>
     <string name="nav_more">More apps</string>
+    <string name="nav_share">Share app</string>
+    <string name="app_sharing">App sharing</string>
 
 </resources>
