@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/30/16 Add share button on candidates list
     // TODO: 1/30/16 Add https://developers.google.com/app-indexing/android/app
     // TODO: 1/30/16 Add onReceive push logic
+    // TODO: 1/30/16 Set StaggeredGrid on landscape
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
