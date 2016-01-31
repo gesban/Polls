@@ -125,4 +125,13 @@ public class SlugVM {
     public void hideProgressBar() {
         mAnimator.fadeOut(mProgressBar, 500);
     }
+
+    public void clearReferences() {
+        mRecyclerView = null;
+        mActionBar = null;
+        mProgressBar = null;
+        mTextViewTitle = null;
+        mSlugActivity = null;
+        mAnimator = null;
+    }
 }

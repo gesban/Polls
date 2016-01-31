@@ -26,4 +26,10 @@ public class SlugActivity extends AppCompatActivity {
         }
         mSlugVM.initializeLayouts();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSlugVM.clearReferences();
+    }
 }

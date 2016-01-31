@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         if (mMainVM.isReceiverRegistered()){
             unregisterReceiver(mConnectivityReceiver);
         }
+        mMainVM.clearReferences();
         mMainVM = null;
         mDrawerToggle = null;
     }

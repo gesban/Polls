@@ -186,5 +186,7 @@ public class DetailsVM {
         mLineChart = null;
         mActionBar = null;
         mTextViewTitle = null;
+        mDetailsActivity = null;
+        mIntent = null;
     }
 }

@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        mDetailsVM.clearMemory();
         super.onDestroy();
+        mDetailsVM.clearMemory();
     }
 }

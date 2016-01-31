@@ -47,7 +47,6 @@ public class MainVM {
     public static TopicAdapter mTopicAdapter;
 
     private MainActivity mMainActivity;
-    private ParseVM mParseVM;
     private Animator mAnimator;
     private boolean isReceiverRegistered;
 
@@ -64,7 +63,6 @@ public class MainVM {
 
     public MainVM(MainActivity mainActivity) {
         mMainActivity = mainActivity;
-        mParseVM = new ParseVM(mMainActivity);
         mAnimator = new Animator();
 
         isReceiverRegistered = false;
@@ -215,10 +213,10 @@ public class MainVM {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (NetworkMagic.isOnline(mMainActivity)){
+                if (NetworkMagic.isOnline(mMainActivity)) {
                     Intent intentService = new Intent(mMainActivity, UpdateDataService.class);
                     mMainActivity.startService(intentService);
-                }else {
+                } else {
                     mMainActivity.registerReceiver(mMainActivity.mConnectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
                     isReceiverRegistered = true;
                 }
@@ -228,5 +226,15 @@ public class MainVM {
 
     public boolean isReceiverRegistered() {
         return isReceiverRegistered;
+    }
+
+    public void clearReferences() {
+        mActionBar = null;
+        mRecyclerView = null;
+        mMainActivity = null;
+        mDrawerLayout = null;
+        mNavigationView = null;
+        mProgressBar = null;
+        mAnimator = null;
     }
 }
