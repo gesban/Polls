@@ -11,13 +11,14 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.MainActivityTAG_;
-    // TODO: 1/28/16 Menu items
     // TODO: 1/28/16 Implement Analytics
     // TODO: 1/28/16 RecyclerView animations
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
     // TODO: 1/29/16 Add LeakCanary support
     // TODO: 1/29/16 Add search feature
+    // TODO: 1/30/16 Add share button
+    // TODO: 1/30/16 Add push notifications
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
