@@ -141,6 +141,9 @@ public class MainVM {
                     case R.id.nav_like:
                         likeApp();
                         break;
+                    case R.id.nav_more:
+                        openMoreApps();
+                        break;
                     default:
                         Log.d(TAG, "Item selected " + item.getTitle());
                 }
@@ -149,6 +152,11 @@ public class MainVM {
                 return true;
             }
         };
+    }
+
+    private void openMoreApps() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MoreAppsByDeveloperUrl));
+        mMainActivity.startActivity(intent);
     }
 
     private void likeApp() {
