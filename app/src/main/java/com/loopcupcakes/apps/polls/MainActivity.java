@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/29/16 Add search feature
     // TODO: 1/30/16 Add share button
     // TODO: 1/30/16 Add push notifications
+    // TODO: 1/30/16 Add https://developers.google.com/app-indexing/android/app
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;

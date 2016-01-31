@@ -47,4 +47,6 @@
     <string name="nav_share">Share app</string>
     <string name="app_sharing">App sharing</string>
 
+    <string name="google_app_id">polls-a93ab</string>
+
 </resources>
