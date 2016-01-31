@@ -38,7 +38,7 @@ public class Constants {
 
     public static final float LineWidthChart = 2.5f;
 
-    public static final long HandlerDelayInt = 10000;
+    public static final long HandlerDelayInt = 30000;
 
     public static final String FacebookPageId = "1702080766716349";
 
