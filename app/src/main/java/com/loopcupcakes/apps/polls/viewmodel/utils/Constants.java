@@ -40,4 +40,6 @@ public class Constants {
 
     public static final long HandlerDelayInt = 10000;
 
+    public static final String FacebookPageId = "1702080766716349";
+
 }

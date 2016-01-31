@@ -138,6 +138,9 @@ public class MainVM {
                     case R.id.nav_rate:
                         rateApp();
                         break;
+                    case R.id.nav_like:
+                        likeApp();
+                        break;
                     default:
                         Log.d(TAG, "Item selected " + item.getTitle());
                 }
@@ -147,6 +150,21 @@ public class MainVM {
             }
         };
     }
+
+    private void likeApp() {
+        Intent intent = null;
+        try {
+            mMainActivity.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + Constants.FacebookPageId));
+        } catch (Exception e) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/" + Constants.FacebookPageId));
+        }finally {
+            if (intent != null){
+                mMainActivity.startActivity(intent);
+            }
+        }
+    }
+
 
     private void rateApp() {
         Uri uri = Uri.parse("market://details?id=" + mMainActivity.getBaseContext().getPackageName());
