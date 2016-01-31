@@ -213,6 +213,9 @@ public class MainVM {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (mMainActivity == null){
+                    return;
+                }
                 if (NetworkMagic.isOnline(mMainActivity)) {
                     Intent intentService = new Intent(mMainActivity, UpdateDataService.class);
                     mMainActivity.startService(intentService);
