@@ -88,9 +88,8 @@ public class MainVM {
 
     private void configureRecycler() {
         SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(mMainActivity.getString(R.string.recycler_home_decoration)));
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mTopicAdapter);
 
-        mRecyclerView.setAdapter(alphaInAnimationAdapter);
+        mRecyclerView.setAdapter(mTopicAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
 
         if (!ScreenUtils.isLandscapeAndLongEnough(mMainActivity)){

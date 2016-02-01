@@ -76,9 +76,8 @@ public class SlugVM {
 
     private void configureRecyclerView() {
         SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(mSlugActivity.getString(R.string.recycler_home_decoration)));
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mChartAdapter);
 
-        mRecyclerView.setAdapter(alphaInAnimationAdapter);
+        mRecyclerView.setAdapter(mChartAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
         if (!ScreenUtils.isLandscapeAndLongEnough(mSlugActivity)) {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(mSlugActivity));

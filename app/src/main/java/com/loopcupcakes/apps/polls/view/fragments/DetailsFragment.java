@@ -77,7 +77,6 @@ public class DetailsFragment extends DialogFragment {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
-            dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         }
     }
 
@@ -93,9 +92,7 @@ public class DetailsFragment extends DialogFragment {
 
         refreshEstimates(mChart);
 
-        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mCandidateAdapter);
-
-        recyclerView.setAdapter(alphaInAnimationAdapter);
+        recyclerView.setAdapter(mCandidateAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.addItemDecoration(spacesItemDecoration);
 
