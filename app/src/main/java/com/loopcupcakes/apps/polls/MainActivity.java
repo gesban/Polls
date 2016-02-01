@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/30/16 Add onReceive push logic
     // TODO: 1/31/16 Ask to be added to https://github.com/wasabeef/recyclerview-animators app-list
     // TODO: 1/31/16 Add animations when an Activity is open
+    // TODO: 1/31/16 Add app invites?
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
