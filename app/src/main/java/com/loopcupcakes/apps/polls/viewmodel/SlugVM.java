@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -19,9 +20,12 @@ import com.loopcupcakes.apps.polls.viewmodel.decorations.SpacesItemDecoration;
 import com.loopcupcakes.apps.polls.viewmodel.tasks.SlugsAsyncTask;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.MessagesMagic;
+import com.loopcupcakes.apps.polls.viewmodel.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
 /**
  * Created by evin on 1/26/16.
@@ -72,10 +76,15 @@ public class SlugVM {
 
     private void configureRecyclerView() {
         SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(mSlugActivity.getString(R.string.recycler_home_decoration)));
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mChartAdapter);
 
-        mRecyclerView.setAdapter(mChartAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mSlugActivity));
+        mRecyclerView.setAdapter(alphaInAnimationAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
+        if (!ScreenUtils.isLandscapeAndLongEnough(mSlugActivity)) {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(mSlugActivity));
+        }else {
+            mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
     }
 
     private void configureActionBar() {

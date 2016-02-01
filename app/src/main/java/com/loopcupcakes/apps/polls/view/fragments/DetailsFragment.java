@@ -28,6 +28,8 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.TextViewMagic;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -88,7 +90,9 @@ public class DetailsFragment extends DialogFragment {
 
         refreshEstimates(mChart);
 
-        recyclerView.setAdapter(mCandidateAdapter);
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mCandidateAdapter);
+
+        recyclerView.setAdapter(alphaInAnimationAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.addItemDecoration(spacesItemDecoration);
 
