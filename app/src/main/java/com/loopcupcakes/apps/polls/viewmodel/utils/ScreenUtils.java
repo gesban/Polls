@@ -1,11 +1,8 @@
 package com.loopcupcakes.apps.polls.viewmodel.utils;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-
-import com.loopcupcakes.apps.polls.MainActivity;
 
 /**
  * Created by evin on 1/31/16.
