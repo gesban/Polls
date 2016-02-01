@@ -34,6 +34,7 @@ public class UpdateDataService extends IntentService {
     }
 
     private void retrieveTopicsOnline() {
+        //// TODO: 1/31/16 Refresh Main Activity items smoothly
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
         query.orderByAscending("priority");
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -47,7 +48,6 @@ public class UpdateDataService extends IntentService {
                     }
                     MainVM.mTopics.clear();
                     MainVM.mTopics.addAll(topics);
-                    MainVM.mTopicAdapter.notifyDataSetChanged();
                 }
             }
         });

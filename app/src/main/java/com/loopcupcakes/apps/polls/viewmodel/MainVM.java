@@ -2,6 +2,7 @@ package com.loopcupcakes.apps.polls.viewmodel;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +39,8 @@ import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
 /**
  * Created by evin on 1/26/16.
@@ -84,10 +88,21 @@ public class MainVM {
 
     private void configureRecycler() {
         SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(Integer.parseInt(mMainActivity.getString(R.string.recycler_home_decoration)));
+        AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(mTopicAdapter);
 
-        mRecyclerView.setAdapter(mTopicAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+        mRecyclerView.setAdapter(alphaInAnimationAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
+
+        if (isPortrait()){
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
+        }else{
+            mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
+
+    }
+
+    private boolean isPortrait() {
+        return mMainActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
     private void configureActionBar() {
