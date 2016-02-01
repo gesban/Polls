@@ -32,6 +32,7 @@ import com.loopcupcakes.apps.polls.viewmodel.services.UpdateDataService;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 import com.loopcupcakes.apps.polls.viewmodel.utils.MessagesMagic;
 import com.loopcupcakes.apps.polls.viewmodel.utils.NetworkMagic;
+import com.loopcupcakes.apps.polls.viewmodel.utils.ScreenUtils;
 import com.loopcupcakes.apps.polls.viewmodel.utils.ShareAppMagic;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -94,22 +95,11 @@ public class MainVM {
         mRecyclerView.setAdapter(alphaInAnimationAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
 
-        if (!isLandscapeAndLongEnough()){
+        if (!ScreenUtils.isLandscapeAndLongEnough(mMainActivity)){
             mRecyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
         }else{
             mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         }
-
-    }
-
-    private boolean isLandscapeAndLongEnough() {
-        DisplayMetrics metrics = new DisplayMetrics();
-        mMainActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        boolean isLandscape = mMainActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        boolean isLongEnough = metrics.widthPixels > Constants.minWidthToSplit;
-
-        return isLandscape && isLongEnough;
     }
 
     private void configureActionBar() {
