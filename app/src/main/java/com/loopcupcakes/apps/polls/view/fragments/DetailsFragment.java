@@ -28,8 +28,6 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.TextViewMagic;
 
 import java.util.ArrayList;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-
 /**
  * A simple {@link Fragment} subclass.
  */

@@ -25,8 +25,6 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.ScreenUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-
 /**
  * Created by evin on 1/26/16.
  */
