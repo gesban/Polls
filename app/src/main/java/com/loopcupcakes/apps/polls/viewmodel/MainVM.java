@@ -172,20 +172,22 @@ public class MainVM {
     }
 
     public void retrieveTopics() {
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
-        query.orderByAscending("priority");
-        query.fromLocalDatastore();
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null && objects != null && objects.size() > 0) {
-                    updateTopics(objects);
-                    hideProgressBar();
-                } else {
-                    retrieveTopicsOnline();
-                }
-            }
-        });
+        // TODO: 2/1/16 Uncomment when updater fixed
+        retrieveTopicsOnline();
+//        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Topic");
+//        query.orderByAscending("priority");
+//        query.fromLocalDatastore();
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            @Override
+//            public void done(List<ParseObject> objects, ParseException e) {
+//                if (e == null && objects != null && objects.size() > 0) {
+//                    updateTopics(objects);
+//                    hideProgressBar();
+//                } else {
+//                    retrieveTopicsOnline();
+//                }
+//            }
+//        });
     }
 
     private void retrieveTopicsOnline() {
@@ -228,8 +230,8 @@ public class MainVM {
                     return;
                 }
                 if (NetworkMagic.isOnline(mMainActivity)) {
-                    Intent intentService = new Intent(mMainActivity, UpdateDataService.class);
-                    mMainActivity.startService(intentService);
+                    Intent unboundService = new Intent(mMainActivity, UpdateDataService.class);
+                    mMainActivity.startService(unboundService);
                 } else {
                     mMainActivity.registerReceiver(mMainActivity.mConnectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
                     isReceiverRegistered = true;

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mMainVM = new MainVM(this);
         if (savedInstanceState == null){
             mMainVM.retrieveTopics();
-            mMainVM.initializeUpdater();
+//            mMainVM.initializeUpdater();
         }else {
             if (MainVM.mTopics.size() == 0){
                 mMainVM.retrieveTopics();

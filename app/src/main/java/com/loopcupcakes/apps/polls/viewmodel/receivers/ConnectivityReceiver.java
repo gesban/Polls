@@ -19,8 +19,8 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (context != null && NetworkMagic.isOnline(context) && !hasRun){
             hasRun = true;
-            Intent intentService = new Intent(context, UpdateDataService.class);
-            context.startService(intentService);
+            Intent unboundService = new Intent(context, UpdateDataService.class);
+            context.startService(unboundService);
         }
     }
 }
