@@ -12,7 +12,6 @@ import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = Constants.MainActivityTAG_;
     // TODO: 1/28/16 Implement Analytics
-    // TODO: 1/28/16 RecyclerView animations
     // TODO: 1/28/16 Add image to topics
     // TODO: 1/29/16 Add watch an ad support
     // TODO: 1/29/16 Add search feature
@@ -21,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/30/16 Add onReceive push logic
     // TODO: 1/30/16 Set StaggeredGrid on landscape
     // TODO: 1/31/16 Ask to be added to https://github.com/wasabeef/recyclerview-animators app-list
+    // TODO: 1/31/16 Open Activity animations
 
     private MainVM mMainVM;
     public ActionBarDrawerToggle mDrawerToggle;
