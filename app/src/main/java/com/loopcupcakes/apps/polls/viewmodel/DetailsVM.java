@@ -75,7 +75,7 @@ public class DetailsVM {
         }
 
         if (mChart != null) {
-            final String stringExtra = mChart.getShortTitle();
+            final String stringExtra = mChart.getTitle();
 
             if (mActionBar != null){
                 mActionBar.setSubtitle(stringExtra);
