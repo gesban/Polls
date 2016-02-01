@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -93,7 +94,7 @@ public class MainVM {
         mRecyclerView.setAdapter(alphaInAnimationAdapter);
         mRecyclerView.addItemDecoration(spacesItemDecoration);
 
-        if (isPortrait()){
+        if (!isLandscapeAndLongEnough()){
             mRecyclerView.setLayoutManager(new LinearLayoutManager(mMainActivity));
         }else{
             mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -101,8 +102,14 @@ public class MainVM {
 
     }
 
-    private boolean isPortrait() {
-        return mMainActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    private boolean isLandscapeAndLongEnough() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        mMainActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        boolean isLandscape = mMainActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        boolean isLongEnough = metrics.widthPixels > Constants.minWidthToSplit;
+
+        return isLandscape && isLongEnough;
     }
 
     private void configureActionBar() {
@@ -222,6 +229,7 @@ public class MainVM {
     }
 
     public void initializeUpdater() {
+        // TODO: 1/31/16 Make a service initialize it
         mMainActivity.mConnectivityReceiver = new ConnectivityReceiver();
 
         final Handler handler = new Handler();

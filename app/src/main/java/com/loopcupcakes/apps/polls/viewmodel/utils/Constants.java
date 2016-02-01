@@ -40,6 +40,8 @@ public class Constants {
 
     public static final long HandlerDelayInt = 30000;
 
+    public static final int minWidthToSplit = 901;
+
     public static final String FacebookPageId = "1702080766716349";
 
     public static final String MoreAppsByDeveloperUrl = "https://play.google.com/store/apps/developer?id=Loop+Cupcakes";
