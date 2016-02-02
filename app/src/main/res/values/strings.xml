@@ -48,5 +48,7 @@
     <string name="app_sharing">App sharing</string>
 
     <string name="google_app_id">polls-a93ab</string>
+    <string name="app_deep_scheme">polls2016</string>
+    <string name="app_deep_host">polls.starting</string>
 
 </resources>
