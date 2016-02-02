@@ -212,7 +212,11 @@ public class MainVM {
     }
 
     public void hideProgressBar(){
-        mAnimator.fadeOut(mProgressBar, 500);
+        if (mAnimator != null){
+            mAnimator.fadeOut(mProgressBar, 500);
+        }else if (mProgressBar != null){
+            mProgressBar.setVisibility(View.GONE);
+        }
     }
 
     public void initializeUpdater() {
