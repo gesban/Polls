@@ -126,6 +126,10 @@ public class DetailsVM {
     }
 
     public void buildChart() {
+        if (mLineChart == null){
+            return;
+        }
+
         LinkedHashMap<String, ArrayList<Entry>> LinkedHashMapArrayList = new LinkedHashMap<>();
         ArrayList<String> datesArrayList = new ArrayList<>();
 
@@ -142,7 +146,6 @@ public class DetailsVM {
         LineData data = new LineData(datesArrayList, dataSets);
 
         mLineChart.animateX(2000);
-
         mLineChart.setData(data);
         mLineChart.invalidate();
     }

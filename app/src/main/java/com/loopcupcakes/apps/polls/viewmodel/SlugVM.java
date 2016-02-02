@@ -117,6 +117,9 @@ public class SlugVM {
 
     public void finishLoading(boolean status) {
         // TODO: 1/30/16 Refresh on new Internet connection (create Receiver)
+        if (mRecyclerView == null || mProgressBar == null){
+            return;
+        }
         if (status) {
             hideProgressBar();
             if (mChartAdapter.getItemCount() < 1) {
