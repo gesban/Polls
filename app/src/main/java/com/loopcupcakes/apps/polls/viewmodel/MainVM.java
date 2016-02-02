@@ -197,7 +197,7 @@ public class MainVM {
                     updateTopics(objects);
                     hideProgressBar();
                 } else {
-                    MessagesMagic.cantConnectMessage(2000, mDrawerLayout, mMainActivity.getString(R.string.check_internet_message));
+                    MessagesMagic.cantConnectMessage(2500, mDrawerLayout, mMainActivity.getString(R.string.check_internet_message));
                 }
             }
         });

@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     // TODO: 1/30/16 Add share button on candidates list
     // TODO: 1/30/16 Add https://developers.google.com/app-indexing/android/app
     // TODO: 1/30/16 Add onReceive push notification logic
-    // TODO: 1/31/16 Ask to be added to https://github.com/wasabeef/recyclerview-animators app-list
     // TODO: 1/31/16 Add animations when an Activity is opened
     // TODO: 1/31/16 Add app invites?
 

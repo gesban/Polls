@@ -124,7 +124,7 @@ public class SlugVM {
                 snackbar.show();
             }
         } else {
-            MessagesMagic.cantConnectMessage(2000, (View) mRecyclerView.getParent(), mSlugActivity.getString(R.string.check_internet_message));
+            MessagesMagic.cantConnectMessage(2500, (View) mRecyclerView.getParent(), mSlugActivity.getString(R.string.check_internet_message));
         }
     }
 
