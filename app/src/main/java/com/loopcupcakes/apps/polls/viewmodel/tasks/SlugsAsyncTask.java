@@ -56,7 +56,7 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
         try {
             charts = call.execute().body();
         } catch (IOException e) {
-            Log.e(TAG, "doInBackground: " + e.toString(), e);
+            Log.e(TAG, "doInBackground: " + e.getMessage());
         }
 
         return charts;
