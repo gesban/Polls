@@ -24,7 +24,7 @@ public class NormalBehaviorTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void does_main_list_show() {
+    public void DoesMainListShow() {
         onView(withId(R.id.a_main_recycler))
                 .perform(RecyclerViewActions
                         .actionOnItemAtPosition(0, click()));
