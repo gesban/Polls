@@ -27,7 +27,7 @@ public class RandomBehaviorTest {
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void DoesMainListShowRandom() {
+    public void doesMainListShowRandom() {
         Random ran = new Random();
         RecyclerView recyclerView = (RecyclerView) mActivityRule.getActivity().findViewById(R.id.a_main_recycler);
 
