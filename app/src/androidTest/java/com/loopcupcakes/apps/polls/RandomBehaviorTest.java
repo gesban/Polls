@@ -42,7 +42,7 @@ public class RandomBehaviorTest {
         RecyclerView recyclerView = (RecyclerView) mActivityRule.getActivity().findViewById(recyclerId);
 
         int n = (recyclerView == null)
-                ? 0
+                ? 1
                 : recyclerView.getAdapter().getItemCount();
         return ran.nextInt(n);
     }
