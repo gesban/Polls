@@ -17,7 +17,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
- * Created by evin on 2/8/16.
+ * Created by evin on 2/8/16.®
  */
 @RunWith(AndroidJUnit4.class)
 public class RandomBehaviorTest {
@@ -28,19 +28,23 @@ public class RandomBehaviorTest {
 
     @Test
     public void doesMainListShowRandom() {
-        Random ran = new Random();
-        RecyclerView recyclerView = (RecyclerView) mActivityRule.getActivity().findViewById(R.id.a_main_recycler);
-
-        int n = (recyclerView == null)
-                ? 0
-                : recyclerView.getAdapter().getItemCount();
-        int x = ran.nextInt(n);
+        int x = getRandomRecyclerPosition(R.id.a_main_recycler);
 
         Log.d(TAG, "DoesMainListShowRandom: " + x);
 
         onView(withId(R.id.a_main_recycler))
                 .perform(RecyclerViewActions
                         .actionOnItemAtPosition(x, click()));
+    }
+
+    private int getRandomRecyclerPosition(int recyclerId) {
+        Random ran = new Random();
+        RecyclerView recyclerView = (RecyclerView) mActivityRule.getActivity().findViewById(recyclerId);
+
+        int n = (recyclerView == null)
+                ? 0
+                : recyclerView.getAdapter().getItemCount();
+        return ran.nextInt(n);
     }
 
 }
