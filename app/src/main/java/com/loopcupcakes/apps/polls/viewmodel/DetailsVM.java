@@ -126,7 +126,7 @@ public class DetailsVM {
     }
 
     public void buildChart() {
-        if (mLineChart == null){
+        if (mLineChart == null || mChart == null){
             return;
         }
 
