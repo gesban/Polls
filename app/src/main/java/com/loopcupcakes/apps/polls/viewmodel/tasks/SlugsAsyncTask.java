@@ -9,6 +9,7 @@ import com.loopcupcakes.apps.polls.viewmodel.interfaces.Pollster;
 import com.loopcupcakes.apps.polls.viewmodel.utils.Constants;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,6 +68,7 @@ public class SlugsAsyncTask extends AsyncTask<String, Void, List<Chart>> {
         super.onPostExecute(charts);
 
         if (charts != null){
+            Collections.reverse(charts);
             for (Chart chart : charts){
                 if (chart.getEstimates() != null && chart.getEstimates().size() > 1){
                     SlugVM.mCharts.add(chart);
